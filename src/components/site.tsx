@@ -1090,7 +1090,7 @@ function Section({
    HOMEPAGE BLOCKS — added per content brief
    ============================================================ */
 
-import { Beaker, Repeat, BadgeCheck, Tag as TagIcon, Microscope } from "lucide-react";
+
 
 /* BLOK 1 — Stats */
 export function HomeStats() {
