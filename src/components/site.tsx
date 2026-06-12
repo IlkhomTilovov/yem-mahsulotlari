@@ -613,11 +613,11 @@ export function Hero() {
 export function TrustStrip() {
   const { t } = useT();
   return (
-    <section aria-label="Certifications" className="border-y border-border bg-surface/60">
-      <div className="container-x flex flex-wrap items-center justify-center gap-x-14 gap-y-4 py-10 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+    <section aria-label="Certifications" className="border-y border-border bg-[oklch(0.97_0.012_85)]">
+      <div className="container-x flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5 text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground md:gap-x-12 md:py-6 md:text-xs">
         {t.trust.map((i) => (
-          <span key={i} className="inline-flex items-center gap-2.5">
-            <ShieldCheck className="h-4 w-4 shrink-0 text-primary" /> {i}
+          <span key={i} className="inline-flex items-center gap-2">
+            <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-primary/70 md:h-4 md:w-4" /> {i}
           </span>
         ))}
       </div>
