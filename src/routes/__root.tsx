@@ -11,7 +11,6 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteLayout } from "../components/site";
 
 function NotFoundComponent() {
   return (
@@ -82,10 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "B2B pet food manufacturer and exporter from Uzbekistan. Dry & wet food for cats and dogs. Private label, export-ready certifications, competitive direct-from-factory pricing." },
       { name: "author", content: "Steppe Nutrition" },
       { name: "keywords", content: "pet food supplier Uzbekistan, private label dog food manufacturer, cat food exporter Central Asia, OEM pet food, wholesale pet food" },
-      { property: "og:title", content: "Steppe Nutrition — Pet Food Manufacturer & Exporter" },
-      { property: "og:description", content: "Reliable B2B pet food supply partner from Central Asia. Private label, export-ready, competitive pricing." },
+      { property: "og:title", content: "Steppe Nutrition — Pet Food Manufacturer & Exporter from Uzbekistan" },
+      { property: "og:description", content: "B2B pet food manufacturer and exporter from Uzbekistan. Dry & wet food for cats and dogs. Private label, export-ready certifications, competitive direct-from-factory pricing." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Steppe Nutrition — Pet Food Manufacturer & Exporter from Uzbekistan" },
+      { name: "twitter:description", content: "B2B pet food manufacturer and exporter from Uzbekistan. Dry & wet food for cats and dogs. Private label, export-ready certifications, competitive direct-from-factory pricing." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/4WtBbB2i57gM40aU5cO4e0GVO153/social-images/social-1781271782441-Frame_20.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/4WtBbB2i57gM40aU5cO4e0GVO153/social-images/social-1781271782441-Frame_20.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -123,10 +126,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteLayout>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </SiteLayout>
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <Outlet />
     </QueryClientProvider>
   );
 }
