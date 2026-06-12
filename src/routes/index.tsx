@@ -599,10 +599,10 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[680px] bg-gradient-to-b from-secondary via-background to-background" />
-      <div className="container-x grid gap-12 pt-12 pb-20 md:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-24 lg:pb-28">
+      <div className="container-x grid gap-12 pt-16 pb-16 md:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-24 lg:pb-[120px]">
         <div className="fade-up flex flex-col justify-center">
           <span className="eyebrow"><span className="h-1.5 w-1.5 rounded-full bg-primary" /> {t.hero.eyebrow}</span>
-          <h1 className="mt-5 text-4xl leading-[1.05] sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem]">
+          <h1 className="mt-5 text-4xl leading-[1.15] sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem]">
             {t.hero.titleA}<span className="text-primary">{t.hero.titleHi}</span>{t.hero.titleB}
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{t.hero.sub}</p>
@@ -627,7 +627,7 @@ function Hero() {
             <div className="absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2 rounded-2xl border border-border bg-background/90 p-3 text-center backdrop-blur md:inset-x-6 md:bottom-6 md:p-4">
               {t.hero.stats.map((s) => (
                 <div key={s.v}>
-                  <div className="font-display text-xl font-extrabold text-primary md:text-2xl">{s.k}</div>
+                  <div className="font-display text-xl font-bold text-primary md:text-2xl">{s.k}</div>
                   <div className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground md:text-xs">{s.v}</div>
                 </div>
               ))}
@@ -644,7 +644,7 @@ function TrustStrip() {
   const { t } = useT();
   return (
     <section aria-label="Certifications" className="border-y border-border bg-surface/60">
-      <div className="container-x flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-6 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+      <div className="container-x flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-8 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {t.trust.map((i) => (
           <span key={i} className="flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-primary" /> {i}
@@ -668,7 +668,7 @@ function About() {
             return (
               <div key={s.v} className="card-surface p-5 sm:p-6">
                 <Icon className="h-5 w-5 text-primary" />
-                <div className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{s.k}</div>
+                <div className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">{s.k}</div>
                 <div className="mt-1 text-sm text-muted-foreground">{s.v}</div>
               </div>
             );
@@ -743,7 +743,7 @@ function PrivateLabel() {
   const { t } = useT();
   return (
     <section id="private-label" className="bg-primary text-primary-foreground">
-      <div className="container-x grid gap-12 py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:py-28">
+      <div className="container-x grid gap-12 py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:py-[120px]">
         <div>
           <div className="overflow-hidden rounded-3xl border border-white/15">
             <img src={privateLabelImg} alt={t.pl.imgAlt} width={1400} height={1000} loading="lazy" className="aspect-[4/5] w-full object-cover" />
@@ -753,14 +753,14 @@ function PrivateLabel() {
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-warm">
             <Sparkles className="h-4 w-4" /> {t.pl.eyebrow}
           </span>
-          <h2 className="mt-5 text-4xl leading-[1.05] sm:text-5xl lg:text-[3.25rem]">
+          <h2 className="mt-5 text-4xl leading-[1.15] sm:text-5xl lg:text-[3.25rem]">
             {t.pl.titleA}<br />{t.pl.titleB}
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 sm:text-lg">{t.pl.body}</p>
 
           <ol className="mt-10 grid gap-4 sm:grid-cols-2">
             {t.pl.steps.map((s) => (
-              <li key={s.n} className="rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur transition-colors hover:bg-white/[0.1]">
+              <li key={s.n} className="rounded-[16px] border border-white/15 bg-white/[0.06] p-5 backdrop-blur transition-colors hover:bg-white/[0.1]">
                 <div className="font-display text-2xl font-extrabold text-warm">{s.n}</div>
                 <div className="mt-2 font-semibold">{s.t}</div>
                 <p className="mt-1 text-sm leading-relaxed text-primary-foreground/75">{s.d}</p>
@@ -797,7 +797,7 @@ function Quality() {
           {t.quality.points.map((p, i) => {
             const Icon = icons[i];
             return (
-              <li key={p.t} className="flex gap-4 rounded-2xl border border-border bg-card p-5">
+              <li key={p.t} className="flex gap-4 rounded-[16px] border border-border bg-card p-5">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-secondary text-primary">
                   <Icon className="h-5 w-5" />
                 </span>
@@ -817,11 +817,11 @@ function Quality() {
 function Production() {
   const { t } = useT();
   return (
-    <section id="production" className="bg-surface/60 py-20 lg:py-28">
+    <section id="production" className="bg-surface/60 py-16 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">{t.prod.eyebrow}</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl">{t.prod.title}</h2>
+          <h2 className="mt-4 text-3xl leading-[1.15] sm:text-4xl lg:text-5xl">{t.prod.title}</h2>
           <p className="mt-5 text-base text-muted-foreground sm:text-lg">{t.prod.sub}</p>
         </div>
 
@@ -865,7 +865,7 @@ function Export() {
 
         <div className="card-surface p-6 sm:p-8">
           <div className="text-xs font-semibold uppercase tracking-wider text-primary">{t.exp.currentlyExporting}</div>
-          <h3 className="mt-2 font-display text-2xl font-bold">{t.exp.countriesTitle}</h3>
+          <h3 className="mt-2 font-display text-2xl">{t.exp.countriesTitle}</h3>
           <ul className="mt-6 flex flex-wrap gap-2">
             {t.exp.countries.map((c) => (
               <li key={c} className="rounded-full border border-border bg-secondary px-3 py-1.5 text-sm font-medium text-secondary-foreground">
@@ -883,11 +883,11 @@ function SocialProof() {
   const { t } = useT();
   const logos = ["PetCo Asia", "Nordic Paws", "MENA Vet", "PrimePet", "Aralia Trade", "Kalmar Foods"];
   return (
-    <section className="border-y border-border bg-card py-16 lg:py-20">
+    <section className="border-y border-border bg-card py-16 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">{t.social.eyebrow}</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">{t.social.title}</h2>
+          <h2 className="mt-4 text-3xl leading-[1.15] sm:text-4xl">{t.social.title}</h2>
         </div>
 
         <div className="mt-10 grid grid-cols-2 items-center gap-x-8 gap-y-6 opacity-70 sm:grid-cols-3 lg:grid-cols-6">
@@ -920,7 +920,7 @@ function Contact() {
           {sent ? (
             <div className="flex flex-col items-start gap-3 py-6">
               <CheckCircle2 className="h-8 w-8 text-primary" />
-              <h3 className="font-display text-2xl font-bold">{t.contact.received}</h3>
+              <h3 className="font-display text-2xl">{t.contact.received}</h3>
               <p className="text-muted-foreground">{t.contact.receivedSub}</p>
             </div>
           ) : (
@@ -993,7 +993,7 @@ function Footer() {
   const { t } = useT();
   const cols = t.footer.cols;
   return (
-    <footer className="border-t border-border bg-surface/60 pb-24 pt-14 lg:pb-14">
+    <footer className="border-t border-border bg-surface/60 pb-24 pt-16 lg:pb-14 lg:pt-[120px]">
       <div className="container-x grid gap-10 lg:grid-cols-[1.2fr_2fr]">
         <div>
           <div className="flex items-center gap-2.5">
@@ -1049,11 +1049,11 @@ function Section({
   id, eyebrow, title, subtitle, children,
 }: { id?: string; eyebrow?: string; title: string; subtitle?: string; children: ReactNode }) {
   return (
-    <section id={id} className="py-20 lg:py-28">
+    <section id={id} className="py-16 lg:py-[120px]">
       <div className="container-x">
         <div className="max-w-3xl">
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem]">{title}</h2>
+          <h2 className="mt-4 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">{title}</h2>
           {subtitle && <p className="mt-5 text-base text-muted-foreground sm:text-lg">{subtitle}</p>}
         </div>
         <div className="mt-12 lg:mt-16">{children}</div>
