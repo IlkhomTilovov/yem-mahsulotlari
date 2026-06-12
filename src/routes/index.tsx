@@ -599,10 +599,10 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[680px] bg-gradient-to-b from-secondary via-background to-background" />
-      <div className="container-x grid gap-12 pt-12 pb-20 md:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-24 lg:pb-28">
+      <div className="container-x grid gap-12 pt-16 pb-16 md:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-24 lg:pb-[120px]">
         <div className="fade-up flex flex-col justify-center">
           <span className="eyebrow"><span className="h-1.5 w-1.5 rounded-full bg-primary" /> {t.hero.eyebrow}</span>
-          <h1 className="mt-5 text-4xl leading-[1.05] sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem]">
+          <h1 className="mt-5 text-4xl leading-[1.15] sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem]">
             {t.hero.titleA}<span className="text-primary">{t.hero.titleHi}</span>{t.hero.titleB}
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{t.hero.sub}</p>
@@ -627,7 +627,7 @@ function Hero() {
             <div className="absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2 rounded-2xl border border-border bg-background/90 p-3 text-center backdrop-blur md:inset-x-6 md:bottom-6 md:p-4">
               {t.hero.stats.map((s) => (
                 <div key={s.v}>
-                  <div className="font-display text-xl font-extrabold text-primary md:text-2xl">{s.k}</div>
+                  <div className="font-display text-xl font-bold text-primary md:text-2xl">{s.k}</div>
                   <div className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground md:text-xs">{s.v}</div>
                 </div>
               ))}
@@ -644,7 +644,7 @@ function TrustStrip() {
   const { t } = useT();
   return (
     <section aria-label="Certifications" className="border-y border-border bg-surface/60">
-      <div className="container-x flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-6 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+      <div className="container-x flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-8 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {t.trust.map((i) => (
           <span key={i} className="flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-primary" /> {i}
@@ -668,7 +668,7 @@ function About() {
             return (
               <div key={s.v} className="card-surface p-5 sm:p-6">
                 <Icon className="h-5 w-5 text-primary" />
-                <div className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{s.k}</div>
+                <div className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">{s.k}</div>
                 <div className="mt-1 text-sm text-muted-foreground">{s.v}</div>
               </div>
             );
@@ -743,7 +743,7 @@ function PrivateLabel() {
   const { t } = useT();
   return (
     <section id="private-label" className="bg-primary text-primary-foreground">
-      <div className="container-x grid gap-12 py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:py-28">
+      <div className="container-x grid gap-12 py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:py-[120px]">
         <div>
           <div className="overflow-hidden rounded-3xl border border-white/15">
             <img src={privateLabelImg} alt={t.pl.imgAlt} width={1400} height={1000} loading="lazy" className="aspect-[4/5] w-full object-cover" />
