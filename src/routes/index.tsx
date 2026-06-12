@@ -157,8 +157,9 @@ const T = {
       eyebrow: "Xalqaro hamkorlar ishonadi",
       title: "Biz bilan brendlarini quruvchi distribyutorlar.",
       testimonials: [
-        { q: "Doimiy sifat, partiyadan partiyaga, private-label moslashuvchanligi esa bizga o'z brendimizni 8 oyda ishga tushirish imkonini berdi.", a: "Distribyutor, Qozog'iston" },
-        { q: "Hujjatlar birinchi konteyner bilan mukammal yetib keldi. Bojxonadan bironta kechikishsiz o'tdi.", a: "Importyor, BAA" },
+        { q: "Doimiy sifat, partiyadan partiyaga, private-label moslashuvchanligi esa bizga o'z brendimizni 8 oyda ishga tushirish imkonini berdi.", name: "Azamat R.", role: "Distribyutor", country: "Qozog'iston" },
+        { q: "Hujjatlar birinchi konteyner bilan mukammal yetib keldi. Bojxonadan bironta kechikishsiz o'tdi.", name: "Fatima A.", role: "Importyor", country: "BAA" },
+        { q: "Har bir partiya laboratoriya hisobotlari bilan keladi. 3 yillik hamkorlikda bir marta ham xafa bo'lmadik.", name: "Mehmet K.", role: "Private-label brendi", country: "Turkiya" },
       ],
     },
     contact: {
