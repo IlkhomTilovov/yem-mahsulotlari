@@ -690,40 +690,55 @@ function Products() {
 
   return (
     <Section id="products" eyebrow={t.products.eyebrow} title={t.products.title} subtitle={t.products.subtitle}>
-      <div className="mb-8 flex flex-wrap items-center gap-2">
-        {cats.map((c) => (
-          <button
-            key={c}
-            onClick={() => setFilter(c)}
-            className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
-              filter === c ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {t.products.cats[c]}
-          </button>
-        ))}
+      <div className="mb-10 flex flex-wrap items-center gap-2">
+        <div className="inline-flex flex-wrap gap-1 rounded-full border border-border bg-card p-1">
+          {cats.map((c) => (
+            <button
+              key={c}
+              onClick={() => setFilter(c)}
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+                filter === c
+                  ? "bg-primary text-primary-foreground shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t.products.cats[c]}
+            </button>
+          ))}
+        </div>
         <a href="#contact" className="ml-auto hidden text-sm font-semibold text-primary hover:underline sm:inline-flex">
           {t.products.downloadPdf}
         </a>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((p) => (
-          <article key={p.name} className="card-surface overflow-hidden">
-            <div className="aspect-[4/3] overflow-hidden bg-surface">
-              <img src={p.img} alt={p.name} width={900} height={675} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.04]" />
+          <article
+            key={p.name}
+            className="group flex flex-col overflow-hidden rounded-[16px] border border-border/60 bg-card transition-all duration-300 hover:-translate-y-1"
+            style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}
+          >
+            <div className="aspect-[4/3] overflow-hidden bg-[#f5f3ee]">
+              <img
+                src={p.img}
+                alt={p.name}
+                width={900}
+                height={675}
+                loading="lazy"
+                className="h-full w-full object-cover mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+              />
             </div>
-            <div className="p-5 sm:p-6">
+            <div className="flex flex-1 flex-col p-6 sm:p-7">
               <div className="text-xs font-semibold uppercase tracking-wider text-primary">{p.catLabel}</div>
-              <h3 className="mt-2 text-lg font-bold tracking-tight">{p.name}</h3>
-              <dl className="mt-4 grid grid-cols-3 gap-3 border-y border-border py-4 text-xs">
+              <h3 className="mt-2 text-lg font-semibold tracking-tight">{p.name}</h3>
+              <dl className="mt-6 grid grid-cols-3 gap-4 border-y border-border/70 py-5 text-xs">
                 <Spec label={t.products.spec.protein} value={p.protein} />
                 <Spec label={t.products.spec.pack} value={p.sizes} />
                 <Spec label={t.products.spec.shelf} value={p.shelf} />
               </dl>
-              <div className="mt-4 flex gap-2">
-                <a href="#contact" className="btn-primary flex-1 !py-2.5 !text-sm">{t.cta.reqQuote}</a>
-                <a href="#contact" className="btn-outline flex-1 !py-2.5 !text-sm">{t.cta.reqSample}</a>
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                <a href="#contact" className="btn-primary w-full justify-center !py-2.5 !text-sm">{t.cta.reqQuote}</a>
+                <a href="#contact" className="btn-outline w-full justify-center !py-2.5 !text-sm">{t.cta.reqSample}</a>
               </div>
             </div>
           </article>
