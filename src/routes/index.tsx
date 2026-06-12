@@ -750,9 +750,9 @@ function Products() {
 
 function Spec({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0">
+    <div className="min-w-0 text-center">
       <dt className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{label}</dt>
-      <dd className="mt-1 truncate font-semibold text-foreground">{value}</dd>
+      <dd className="mt-2 truncate text-sm font-semibold text-foreground">{value}</dd>
     </div>
   );
 }
