@@ -1080,3 +1080,387 @@ function Section({
     </section>
   );
 }
+
+/* ============================================================
+   HOMEPAGE BLOCKS — added per content brief
+   ============================================================ */
+
+import { Beaker, Repeat, BadgeCheck, Tag as TagIcon, Microscope } from "lucide-react";
+
+/* BLOK 1 — Stats */
+export function HomeStats() {
+  const items = [
+    { icon: Factory, k: "12 000+", v: "Tonna / yil quvvat" },
+    { icon: Globe2, k: "20+", v: "Eksport davlatlari" },
+    { icon: Award, k: "12", v: "Yillik tajriba" },
+    { icon: PackageCheck, k: "40+", v: "Mahsulot turlari (SKU)" },
+  ];
+  return (
+    <section className="bg-background py-20 lg:py-[120px]">
+      <div className="container-x grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map(({ icon: Icon, k, v }) => (
+          <div
+            key={v}
+            className="group rounded-2xl border border-border/60 bg-card p-8 transition-all duration-300 hover:-translate-y-1"
+            style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}
+          >
+            <span className="inline-grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
+              <Icon className="h-5 w-5" />
+            </span>
+            <div className="mt-6 font-display text-5xl font-extrabold tracking-tight text-foreground">{k}</div>
+            <span className="mt-4 inline-block h-[3px] w-10 rounded-full bg-primary/70" />
+            <div className="mt-4 text-sm leading-relaxed text-muted-foreground">{v}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* BLOK 2 — Afzalliklar */
+export function HomeBenefits() {
+  const items = [
+    { icon: Beaker, t: "Doimiy sifat", d: "Har partiya laboratoriyada tekshiriladi." },
+    { icon: Repeat, t: "Barqaror yetkazib berish", d: "Prognoz qilinadigan muddatlar va hajmlar." },
+    { icon: TagIcon, t: "Private-label moslashuvchanligi", d: "Sizning brendingiz, yuqori marja." },
+    { icon: BadgeCheck, t: "Sertifikatlangan eksport", d: "ISO, HACCP, to'liq hujjatlar." },
+  ];
+  return (
+    <section className="bg-background py-20 lg:py-[120px]">
+      <div className="container-x">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="eyebrow justify-center">Nega Steppe Nutrition</span>
+          <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+            Faqat mahsulot emas — ishonchli biznes hamkor.
+          </h2>
+          <p className="mt-6 text-base text-muted-foreground sm:text-lg">
+            Distribyutorlar va importyorlar bizdan shunchaki uy hayvonlari ozuqasidan ko'proq narsa oladi —
+            doimiy sifat, barqaror yetkazib berish va marjangizni himoya qiluvchi private-label moslashuvchanligi.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-16 grid max-w-5xl gap-6 sm:grid-cols-2">
+          {items.map(({ icon: Icon, t, d }) => (
+            <div
+              key={t}
+              className="flex gap-5 rounded-2xl border border-border/60 bg-card p-7 transition-all duration-300 hover:-translate-y-1"
+              style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}
+            >
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                <Icon className="h-5 w-5" />
+              </span>
+              <div>
+                <div className="font-display text-lg font-bold">{t}</div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* BLOK 3 — Vositachi vs Ishlab chiqaruvchi */
+export function HomeVsMiddleman() {
+  const left = ["Yuqori narx — qo'shimcha qatlam marja", "Sifat nazorati yo'q", "Sekin javob va noaniq muddatlar", "Noaniq kelib chiqish"];
+  const right = ["Zavod narxi — to'g'ridan-to'g'ri", "To'liq sifat nazorati va laboratoriya", "24 soat ichida javob", "Shaffof kelib chiqish va hujjatlar"];
+  return (
+    <section className="bg-primary text-primary-foreground py-20 lg:py-[120px]">
+      <div className="container-x">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-warm">
+            <Sparkles className="h-4 w-4" /> To'g'ridan-to'g'ri ishlab chiqaruvchidan
+          </span>
+          <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+            Vositachidan emas — to'g'ridan-to'g'ri ishlab chiqaruvchidan.
+          </h2>
+        </div>
+
+        <div className="mx-auto mt-14 grid max-w-5xl items-stretch gap-6 md:grid-cols-2">
+          <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-8">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/60">
+              Vositachi orqali
+            </div>
+            <h3 className="mt-3 font-display text-2xl font-bold">Qo'shimcha xarajat va xavf</h3>
+            <ul className="mt-7 space-y-4">
+              {left.map((i) => (
+                <li key={i} className="flex items-start gap-3 text-primary-foreground/80">
+                  <X className="mt-0.5 h-5 w-5 shrink-0 text-primary-foreground/50" />
+                  <span className="text-sm leading-relaxed">{i}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="relative rounded-2xl border border-warm/40 bg-white/[0.07] p-8 ring-1 ring-warm/30">
+            <span className="absolute -top-3 left-8 rounded-full bg-warm px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-warm-foreground">
+              Steppe Nutrition
+            </span>
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-warm">
+              Steppe Nutrition bilan
+            </div>
+            <h3 className="mt-3 font-display text-2xl font-bold">Zavod narxi va to'liq nazorat</h3>
+            <ul className="mt-7 space-y-4">
+              {right.map((i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-warm" />
+                  <span className="text-sm leading-relaxed">{i}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* BLOK 4 — Mahsulotlar preview (3) */
+export function HomeProductsPreview() {
+  const items = [
+    { name: "Premium quruq it ozuqasi", img: dryDog, protein: "26%", sizes: "1, 3, 10, 20 kg", shelf: "18 oy", catLabel: "It · Quruq" },
+    { name: "Sousli ho'l it ozuqasi", img: wetDog, protein: "10%", sizes: "100, 200, 400 g", shelf: "24 oy", catLabel: "It · Ho'l" },
+    { name: "Kattalar uchun quruq mushuk ozuqasi", img: dryCat, protein: "32%", sizes: "0.4, 1.5, 5, 10 kg", shelf: "18 oy", catLabel: "Mushuk · Quruq" },
+  ];
+  return (
+    <section className="bg-background py-20 lg:py-[120px]">
+      <div className="container-x">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="eyebrow justify-center">Mahsulotlarimiz</span>
+          <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+            Eksportga tayyor asosiy yo'nalishlar
+          </h2>
+          <p className="mt-5 text-base text-muted-foreground sm:text-lg">
+            Sertifikatlangan retseptlar, doimiy sifat. To'liq katalogda 40+ SKU.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((p) => (
+            <article
+              key={p.name}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-300 hover:-translate-y-1"
+              style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}
+            >
+              <div className="aspect-[4/3] overflow-hidden bg-[#f5f3ee]">
+                <img src={p.img} alt={p.name} className="h-full w-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-[1.05]" />
+              </div>
+              <div className="flex flex-1 flex-col p-7">
+                <div className="text-xs font-semibold uppercase tracking-wider text-primary">{p.catLabel}</div>
+                <h3 className="mt-2 text-lg font-semibold tracking-tight">{p.name}</h3>
+                <dl className="mt-5 grid grid-cols-3 gap-3 border-y border-border/70 py-4 text-xs">
+                  <Spec label="Protein" value={p.protein} />
+                  <Spec label="Qadoq" value={p.sizes} />
+                  <Spec label="Saqlash" value={p.shelf} />
+                </dl>
+                <a href="/contact" className="btn-primary mt-6 w-full justify-center !py-2.5 !text-sm">Narx so'rash</a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Link to="/products" className="btn-warm px-8 py-4 text-base">
+            Barcha mahsulotlar <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* BLOK 5 — Private Label highlight */
+export function HomePrivateLabel() {
+  const steps = [
+    { n: "01", t: "Retsept" },
+    { n: "02", t: "Qadoqlash" },
+    { n: "03", t: "Ishlab chiqarish" },
+    { n: "04", t: "Eksport" },
+  ];
+  return (
+    <section className="bg-primary text-primary-foreground py-20 lg:py-[120px]">
+      <div className="container-x">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-warm">
+            <Sparkles className="h-4 w-4" /> Private Label
+          </span>
+          <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+            Sizning brendingiz, bizning ishlab chiqarishimiz.
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-primary-foreground/85 sm:text-lg">
+            Private-label / OEM ishlab chiqarish — mahsulot sizning brendingiz ostida chiqariladi.
+            Zavod narxi tufayli sizda yuqori marja, biz esa sifat va hujjatlarni to'liq olib boramiz.
+          </p>
+        </div>
+
+        <ol className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((s) => (
+            <li key={s.n} className="rounded-2xl border border-white/15 bg-white/[0.06] p-7 backdrop-blur">
+              <div className="font-display text-3xl font-extrabold text-warm">{s.n}</div>
+              <div className="mt-3 font-semibold">{s.t}</div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-12 flex justify-center">
+          <Link to="/private-label" className="inline-flex items-center gap-2.5 rounded-xl bg-warm px-8 py-4 text-base font-bold text-warm-foreground transition-transform hover:-translate-y-0.5">
+            Private Label haqida batafsil <ArrowRight className="h-5 w-5" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* BLOK 6 — How it works 1-2-3 */
+export function HomeHowItWorks() {
+  const steps = [
+    { n: 1, t: "So'rov yuboring", d: "Mahsulot, hajm va talablaringizni ayting." },
+    { n: 2, t: "Namuna va taklif oling", d: "Namuna yuboramiz, narx va shartlarni kelishamiz." },
+    { n: 3, t: "Buyurtma va eksport", d: "Ishlab chiqaramiz va hujjatlar bilan yetkazamiz." },
+  ];
+  return (
+    <section className="bg-surface/60 py-20 lg:py-[120px]">
+      <div className="container-x">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="eyebrow justify-center">Jarayon</span>
+          <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+            Hamkorlik qanday boshlanadi
+          </h2>
+        </div>
+
+        <div className="relative mx-auto mt-16 grid max-w-5xl gap-10 md:grid-cols-3">
+          <div aria-hidden className="pointer-events-none absolute left-[16%] right-[16%] top-8 hidden h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent md:block" />
+          {steps.map((s) => (
+            <div key={s.n} className="relative text-center">
+              <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border-2 border-primary/20 bg-card font-display text-xl font-extrabold text-primary shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+                {s.n}
+              </div>
+              <h3 className="mt-6 font-display text-lg font-bold">{s.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-14 flex justify-center">
+          <Link to="/contact" className="btn-warm px-8 py-4 text-base">
+            So'rovni boshlang <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* BLOK 7 — Quality / science */
+export function HomeQualityScience() {
+  const points = [
+    "O'z laboratoriyamizda sifat nazorati",
+    "Veterinar-nutritsionist nazorati",
+    "AAFCO standartlariga to'liq moslik",
+    "Har partiya sertifikatlanadi",
+  ];
+  return (
+    <section className="bg-background py-20 lg:py-[120px]">
+      <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+        <div className="overflow-hidden rounded-3xl border border-border/60 shadow-[0_12px_40px_rgba(0,0,0,0.10)]">
+          <img src={factoryLine} alt="Laboratoriya va sifat nazorati" className="aspect-[4/3] w-full object-cover" />
+        </div>
+        <div>
+          <span className="eyebrow">
+            <Microscope className="h-4 w-4" /> Sifat bilan boshqariladi
+          </span>
+          <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.5rem]">
+            Retseptlar veterinar-nutritsionistlar tomonidan ishlab chiqilgan.
+          </h2>
+          <ul className="mt-10 space-y-5">
+            {points.map((p) => (
+              <li key={p} className="flex items-start gap-3">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                <span className="text-base text-foreground/90">{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* BLOK 8 — Partners + testimonials */
+export function HomeSocialProof() {
+  const { t } = useT();
+  const logos = ["PetCo Asia", "Nordic Paws", "MENA Vet", "PrimePet", "Aralia Trade", "Kalmar Foods"];
+  return (
+    <section className="bg-surface/60 py-20 lg:py-[120px]">
+      <div className="container-x">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="eyebrow justify-center">Hamkorlar</span>
+          <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+            Xalqaro hamkorlar ishonadi
+          </h2>
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-5 sm:gap-x-14">
+          {logos.map((l) => (
+            <div key={l} className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground/55 transition-colors hover:text-muted-foreground/80 sm:text-base">
+              {l}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 grid gap-6 md:grid-cols-3">
+          {t.social.testimonials.map((tt) => (
+            <figure key={tt.name} className="flex flex-col rounded-2xl border border-border/60 bg-card p-7 sm:p-8" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}>
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-warm/10">
+                <Quote className="h-5 w-5 text-warm" />
+              </span>
+              <blockquote className="mt-5 flex-1 text-base leading-relaxed text-foreground/90">"{tt.q}"</blockquote>
+              <figcaption className="mt-6 border-t border-border pt-5">
+                <div className="font-display text-sm font-semibold">{tt.name}</div>
+                <div className="mt-1 text-xs text-muted-foreground">
+                  <span className="font-medium text-primary/80">{tt.role}</span>
+                  <span className="mx-1.5 text-border">·</span>
+                  {tt.country}
+                </div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* BLOK 9 — Final CTA banner */
+export function HomeFinalCTA() {
+  return (
+    <section className="bg-[oklch(0.22_0.04_165)] text-white">
+      <div className="container-x py-20 lg:py-[120px]">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+            Hamkorlikni boshlang. <span className="text-warm">24 soat ichida</span> javob beramiz.
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-white/75 sm:text-lg">
+            Distribyutor yoki importyormisiz? Narx, MOQ va namuna uchun so'rov yuboring — eksport jamoamiz tezda bog'lanadi.
+          </p>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link to="/contact" className="inline-flex items-center gap-2.5 rounded-xl bg-warm px-8 py-4 text-base font-bold text-warm-foreground transition-transform hover:-translate-y-0.5">
+              Narx so'rash <ArrowRight className="h-5 w-5" />
+            </Link>
+            <div className="flex items-center gap-3">
+              <a href="https://wa.me/998900000000" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-12 w-12 place-items-center rounded-xl border border-white/15 bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]">
+                <MessageCircle className="h-5 w-5" />
+              </a>
+              <a href="https://t.me/steppe_nutrition" target="_blank" rel="noreferrer" aria-label="Telegram" className="grid h-12 w-12 place-items-center rounded-xl border border-white/15 bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]">
+                <Send className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
