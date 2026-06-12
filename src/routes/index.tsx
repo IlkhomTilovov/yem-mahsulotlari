@@ -1004,7 +1004,7 @@ function Field({
   label, name, type = "text", required, textarea, placeholder,
 }: { label: string; name: string; type?: string; required?: boolean; textarea?: boolean; placeholder?: string }) {
   const cls =
-    "mt-1.5 w-full rounded-lg border border-input bg-background px-3.5 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/15";
+    "mt-1.5 w-full rounded-lg border border-input bg-background px-3.5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-[3px] focus:ring-primary/20";
   return (
     <label className="block">
       <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
