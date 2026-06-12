@@ -1071,7 +1071,7 @@ function FooterCol({ title, links }: { title: string; links: readonly string[] }
       <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
         {links.map((l) => (
           <li key={l}>
-            <a href="#contact" className="hover:text-foreground">{l}</a>
+            <a href="#contact" className="transition-colors hover:text-foreground">{l}</a>
           </li>
         ))}
       </ul>
