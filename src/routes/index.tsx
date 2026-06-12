@@ -157,8 +157,9 @@ const T = {
       eyebrow: "Xalqaro hamkorlar ishonadi",
       title: "Biz bilan brendlarini quruvchi distribyutorlar.",
       testimonials: [
-        { q: "Doimiy sifat, partiyadan partiyaga, private-label moslashuvchanligi esa bizga o'z brendimizni 8 oyda ishga tushirish imkonini berdi.", a: "Distribyutor, Qozog'iston" },
-        { q: "Hujjatlar birinchi konteyner bilan mukammal yetib keldi. Bojxonadan bironta kechikishsiz o'tdi.", a: "Importyor, BAA" },
+        { q: "Doimiy sifat, partiyadan partiyaga, private-label moslashuvchanligi esa bizga o'z brendimizni 8 oyda ishga tushirish imkonini berdi.", name: "Azamat R.", role: "Distribyutor", country: "Qozog'iston" },
+        { q: "Hujjatlar birinchi konteyner bilan mukammal yetib keldi. Bojxonadan bironta kechikishsiz o'tdi.", name: "Fatima A.", role: "Importyor", country: "BAA" },
+        { q: "Har bir partiya laboratoriya hisobotlari bilan keladi. 3 yillik hamkorlikda bir marta ham xafa bo'lmadik.", name: "Mehmet K.", role: "Private-label brendi", country: "Turkiya" },
       ],
     },
     contact: {
@@ -282,8 +283,9 @@ const T = {
       eyebrow: "Доверяют международные партнёры",
       title: "Дистрибьюторы, строящие свои бренды с нами.",
       testimonials: [
-        { q: "Стабильное качество от партии к партии, а гибкость private-label позволила нам запустить свой бренд за 8 месяцев.", a: "Дистрибьютор, Казахстан" },
-        { q: "Документы пришли идеально с первым контейнером. Таможня прошла без единой задержки.", a: "Импортёр, ОАЭ" },
+        { q: "Стабильное качество от партии к партии, а гибкость private-label позволила нам запустить свой бренд за 8 месяцев.", name: "Азамат Р.", role: "Дистрибьютор", country: "Казахстан" },
+        { q: "Документы пришли идеально с первым контейнером. Таможня прошла без единой задержки.", name: "Фатима А.", role: "Импортёр", country: "ОАЭ" },
+        { q: "Каждый контейнер приходит с отчётами лабораторного контроля качества. Мы работаем 3 года и ни разу не были разочарованы.", name: "Мехмет К.", role: "Собственный бренд", country: "Турция" },
       ],
     },
     contact: {
@@ -407,8 +409,9 @@ const T = {
       eyebrow: "Trusted by international partners",
       title: "Distributors building their brands with us.",
       testimonials: [
-        { q: "Consistent quality batch after batch, and the private-label flexibility let us launch our own brand in 8 months.", a: "Distributor, Kazakhstan" },
-        { q: "Documentation arrived perfect with the first container. Customs cleared without a single delay.", a: "Importer, UAE" },
+        { q: "Consistent quality batch after batch, and the private-label flexibility let us launch our own brand in 8 months.", name: "Azamat R.", role: "Distributor", country: "Kazakhstan" },
+        { q: "Documentation arrived perfect with the first container. Customs cleared without a single delay.", name: "Fatima A.", role: "Importer", country: "UAE" },
+        { q: "Every container arrives with QC lab reports. We've been working together for 3 years and have never been disappointed.", name: "Mehmet K.", role: "Private-label brand", country: "Turkey" },
       ],
     },
     contact: {
@@ -910,25 +913,39 @@ function SocialProof() {
   const { t } = useT();
   const logos = ["PetCo Asia", "Nordic Paws", "MENA Vet", "PrimePet", "Aralia Trade", "Kalmar Foods"];
   return (
-    <section className="border-y border-border bg-card py-16 lg:py-[120px]">
+    <section className="border-y border-border bg-card py-20 lg:py-[140px]">
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">{t.social.eyebrow}</span>
-          <h2 className="mt-4 text-3xl leading-[1.15] sm:text-4xl">{t.social.title}</h2>
+          <h2 className="mt-5 text-3xl leading-[1.15] tracking-tight sm:text-4xl lg:text-[2.75rem]">{t.social.title}</h2>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 items-center gap-x-8 gap-y-6 opacity-70 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-5 sm:gap-x-14">
           {logos.map((l) => (
-            <div key={l} className="text-center font-display text-lg font-bold tracking-tight text-muted-foreground">{l}</div>
+            <div
+              key={l}
+              className="text-center font-display text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground/50 transition-colors hover:text-muted-foreground/80 sm:text-base"
+            >
+              {l}
+            </div>
           ))}
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <div className="mt-16 grid gap-6 md:grid-cols-3">
           {t.social.testimonials.map((tt) => (
-            <figure key={tt.a} className="card-surface p-6 sm:p-8">
-              <Quote className="h-6 w-6 text-warm" />
-              <blockquote className="mt-4 text-lg leading-relaxed">{tt.q}</blockquote>
-              <figcaption className="mt-5 text-sm font-semibold text-muted-foreground">— {tt.a}</figcaption>
+            <figure key={tt.name} className="card-surface flex flex-col p-7 sm:p-9">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-warm/10">
+                <Quote className="h-5 w-5 text-warm" />
+              </span>
+              <blockquote className="mt-5 flex-1 text-base leading-relaxed text-foreground/90 sm:text-lg">"{tt.q}"</blockquote>
+              <figcaption className="mt-7 border-t border-border pt-5">
+                <div className="font-display text-sm font-semibold text-foreground">{tt.name}</div>
+                <div className="mt-1 text-xs text-muted-foreground">
+                  <span className="font-medium text-primary/80">{tt.role}</span>
+                  <span className="mx-1.5 text-border">·</span>
+                  {tt.country}
+                </div>
+              </figcaption>
             </figure>
           ))}
         </div>
