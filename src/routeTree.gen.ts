@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as QualityRouteImport } from './routes/quality'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ProductionRouteImport } from './routes/production'
 import { Route as PrivateLabelRouteImport } from './routes/private-label'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +24,11 @@ const QualityRoute = QualityRouteImport.update({
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductionRoute = ProductionRouteImport.update({
+  id: '/production',
+  path: '/production',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivateLabelRoute = PrivateLabelRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/private-label': typeof PrivateLabelRoute
+  '/production': typeof ProductionRoute
   '/products': typeof ProductsRoute
   '/quality': typeof QualityRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/private-label': typeof PrivateLabelRoute
+  '/production': typeof ProductionRoute
   '/products': typeof ProductsRoute
   '/quality': typeof QualityRoute
 }
@@ -60,21 +68,42 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/private-label': typeof PrivateLabelRoute
+  '/production': typeof ProductionRoute
   '/products': typeof ProductsRoute
   '/quality': typeof QualityRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/private-label' | '/products' | '/quality'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/private-label'
+    | '/production'
+    | '/products'
+    | '/quality'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/private-label' | '/products' | '/quality'
-  id: '__root__' | '/' | '/about' | '/private-label' | '/products' | '/quality'
+  to:
+    | '/'
+    | '/about'
+    | '/private-label'
+    | '/production'
+    | '/products'
+    | '/quality'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/private-label'
+    | '/production'
+    | '/products'
+    | '/quality'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   PrivateLabelRoute: typeof PrivateLabelRoute
+  ProductionRoute: typeof ProductionRoute
   ProductsRoute: typeof ProductsRoute
   QualityRoute: typeof QualityRoute
 }
@@ -93,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/products'
       fullPath: '/products'
       preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/production': {
+      id: '/production'
+      path: '/production'
+      fullPath: '/production'
+      preLoaderRoute: typeof ProductionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/private-label': {
@@ -123,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   PrivateLabelRoute: PrivateLabelRoute,
+  ProductionRoute: ProductionRoute,
   ProductsRoute: ProductsRoute,
   QualityRoute: QualityRoute,
 }
