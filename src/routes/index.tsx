@@ -436,8 +436,9 @@ const T = {
   },
 } as const;
 
-const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: typeof T.UZ }>({
-  lang: "UZ", setLang: () => {}, t: T.UZ,
+type TT = (typeof T)[Lang];
+const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: TT }>({
+  lang: "UZ", setLang: () => {}, t: T.UZ as TT,
 });
 const useT = () => useContext(LangCtx);
 
