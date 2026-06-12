@@ -1022,7 +1022,7 @@ function Field({
 function ContactRow({ icon: Icon, title, value, href, cta }: { icon: typeof MessageCircle; title: string; value: string; href: string; cta: string }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" className="card-surface flex items-center gap-4 p-5">
-      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary">
+      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
         <Icon className="h-5 w-5" />
       </span>
       <div className="min-w-0 flex-1">
