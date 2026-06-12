@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import {
   ArrowRight,
+  ChevronRight,
   ShieldCheck,
   Factory,
   Globe2,
@@ -844,21 +845,24 @@ function Production() {
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">{t.prod.eyebrow}</span>
-          <h2 className="mt-4 text-3xl leading-[1.15] sm:text-4xl lg:text-5xl">{t.prod.title}</h2>
-          <p className="mt-5 text-base text-muted-foreground sm:text-lg">{t.prod.sub}</p>
+          <h2 className="mt-5 text-3xl leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl">{t.prod.title}</h2>
+          <p className="mt-6 text-base text-muted-foreground sm:text-lg">{t.prod.sub}</p>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-card)]">
+        <div className="mt-14 overflow-hidden rounded-[16px] border border-border/70 shadow-[var(--shadow-card)]">
           <img src={factoryLine} alt={t.prod.imgAlt} width={1600} height={1000} loading="lazy" className="aspect-[16/9] w-full object-cover" />
         </div>
 
-        <ol className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {t.prod.steps.map((s, i) => (
-            <li key={s} className="card-surface flex items-center gap-4 p-5">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary font-display font-bold text-primary-foreground">
+            <li key={s} className="card-surface relative flex items-center gap-5 p-6">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-2 border-primary/20 bg-primary font-display text-base font-bold text-primary-foreground">
                 {i + 1}
               </span>
               <span className="font-semibold">{s}</span>
+              {i < t.prod.steps.length - 1 && (
+                <ChevronRight className="absolute right-3 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-muted-foreground/40 sm:block lg:hidden" />
+              )}
             </li>
           ))}
         </ol>
