@@ -644,10 +644,10 @@ function TrustStrip() {
   const { t } = useT();
   return (
     <section aria-label="Certifications" className="border-y border-border bg-surface/60">
-      <div className="container-x flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-8 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+      <div className="container-x flex flex-wrap items-center justify-center gap-x-14 gap-y-4 py-10 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {t.trust.map((i) => (
-          <span key={i} className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-primary" /> {i}
+          <span key={i} className="inline-flex items-center gap-2.5">
+            <ShieldCheck className="h-4 w-4 shrink-0 text-primary" /> {i}
           </span>
         ))}
       </div>
@@ -666,10 +666,13 @@ function About() {
           {t.about.stats.map((s, i) => {
             const Icon = icons[i];
             return (
-              <div key={s.v} className="card-surface p-5 sm:p-6">
-                <Icon className="h-5 w-5 text-primary" />
-                <div className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">{s.k}</div>
-                <div className="mt-1 text-sm text-muted-foreground">{s.v}</div>
+              <div key={s.v} className="card-surface p-6 sm:p-8">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
+                  <Icon className="h-5 w-5 text-primary" />
+                </span>
+                <div className="mt-5 font-display text-4xl font-extrabold tracking-tight sm:text-5xl">{s.k}</div>
+                <span className="mt-3 inline-block h-1 w-8 rounded-full bg-primary/60" />
+                <div className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.v}</div>
               </div>
             );
           })}
