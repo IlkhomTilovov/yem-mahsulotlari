@@ -611,15 +611,24 @@ export function Hero() {
 }
 
 export function TrustStrip() {
-  const { t } = useT();
+  const certs = ["ISO 22000", "HACCP", "GMP+", "EAC", "Veterinariya tasdig'i"];
   return (
     <section aria-label="Certifications" className="border-y border-border bg-[oklch(0.97_0.012_85)]">
-      <div className="container-x flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5 text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground md:gap-x-12 md:py-6 md:text-xs">
-        {t.trust.map((i) => (
-          <span key={i} className="inline-flex items-center gap-2">
-            <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-primary/70 md:h-4 md:w-4" /> {i}
+      <div className="container-x py-7 md:py-9">
+        <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground/80 md:text-[11px]">
+          Xalqaro standartlar bilan tasdiqlangan
+        </p>
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground md:mt-5 md:gap-x-12 md:text-xs">
+          {certs.map((i) => (
+            <span key={i} className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-primary/70 md:h-4 md:w-4" /> {i}
+            </span>
+          ))}
+          <span className="hidden h-3 w-px bg-border md:inline-block" aria-hidden />
+          <span className="inline-flex items-center gap-2">
+            <Globe2 className="h-3.5 w-3.5 shrink-0 text-primary/70 md:h-4 md:w-4" /> 20+ davlatga eksport
           </span>
-        ))}
+        </div>
       </div>
     </section>
   );
