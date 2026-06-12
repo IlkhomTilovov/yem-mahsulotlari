@@ -666,10 +666,13 @@ function About() {
           {t.about.stats.map((s, i) => {
             const Icon = icons[i];
             return (
-              <div key={s.v} className="card-surface p-5 sm:p-6">
-                <Icon className="h-5 w-5 text-primary" />
-                <div className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">{s.k}</div>
-                <div className="mt-1 text-sm text-muted-foreground">{s.v}</div>
+              <div key={s.v} className="card-surface p-6 sm:p-8">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
+                  <Icon className="h-5 w-5 text-primary" />
+                </span>
+                <div className="mt-5 font-display text-4xl font-extrabold tracking-tight sm:text-5xl">{s.k}</div>
+                <span className="mt-3 inline-block h-1 w-8 rounded-full bg-primary/60" />
+                <div className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.v}</div>
               </div>
             );
           })}
