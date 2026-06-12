@@ -64,9 +64,9 @@ const T = {
     cta: { quote: "Narx so'rash", catalog: "Katalogni yuklab olish", startPL: "Private Label loyihasini boshlash", sendInquiry: "So'rovni yuborish", reqQuote: "Narx so'rash", reqSample: "Namuna so'rash" },
     hero: {
       eyebrow: "B2B ishlab chiqaruvchi · Eksportchi",
-      titleA: "Markaziy Osiyodan",
-      titleHi: " ishonchli uy hayvonlari ozuqasi",
-      titleB: " yetkazib beruvchi hamkoringiz.",
+      titleA: "Markaziy Osiyodan uy hayvonlari ozuqasi yetkazib beruvchi",
+      titleHi: " ishonchli hamkoringiz",
+      titleB: ".",
       sub: "Biz mushuk va itlar uchun eksportga tayyor quruq va ho'l ozuqa ishlab chiqaramiz — sertifikatlangan sifat, doimiy yetkazib berish va sizning marjangizni himoya qiluvchi private-label moslashuvchanligi.",
       feats: ["ISO 22000 sertifikatlangan", "MOQ 5 tonnadan", "FOB va CIF qo'llab-quvvatlanadi", "Private-label OEM", "Veterinariya tasdig'i", "24 soat ichida javob"],
       stats: [{ k: "20+", v: "Eksport davlatlari" }, { k: "12k t", v: "Yillik quvvat" }, { k: "ISO", v: "22000 sertifikati" }],
