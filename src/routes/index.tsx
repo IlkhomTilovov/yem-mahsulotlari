@@ -598,21 +598,21 @@ function Hero() {
   const { t } = useT();
   return (
     <section id="top" className="relative overflow-hidden">
-      <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[680px] bg-gradient-to-b from-secondary via-background to-background" />
-      <div className="container-x grid gap-12 pt-16 pb-16 md:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-24 lg:pb-[120px]">
+      <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[720px] bg-gradient-to-b from-secondary via-background to-background" />
+      <div className="container-x grid gap-12 pt-20 pb-20 md:pt-28 md:pb-28 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-[140px] lg:pb-[140px]">
         <div className="fade-up flex flex-col justify-center">
           <span className="eyebrow"><span className="h-1.5 w-1.5 rounded-full bg-primary" /> {t.hero.eyebrow}</span>
-          <h1 className="mt-5 text-4xl leading-[1.15] sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem]">
+          <h1 className="mt-6 text-4xl font-semibold leading-[1.15] sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">
             {t.hero.titleA}<span className="text-primary">{t.hero.titleHi}</span>{t.hero.titleB}
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{t.hero.sub}</p>
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">{t.hero.sub}</p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#contact" className="btn-warm">{t.cta.quote} <ArrowRight className="h-4 w-4" /></a>
+          <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a href="#contact" className="btn-warm px-8 py-4 text-base">{t.cta.quote} <ArrowRight className="h-4 w-4" /></a>
             <a href="#products" className="btn-outline"><FileDown className="h-4 w-4" /> {t.cta.catalog}</a>
           </div>
 
-          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-muted-foreground sm:grid-cols-3">
+          <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-muted-foreground sm:grid-cols-3">
             {t.hero.feats.map((f) => (
               <li key={f} className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" /> {f}
@@ -624,11 +624,11 @@ function Hero() {
         <div className="relative">
           <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-card)]">
             <img src={factoryHero} alt={t.hero.imgAlt} width={1600} height={1100} className="aspect-[4/5] w-full object-cover lg:aspect-[5/6]" />
-            <div className="absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2 rounded-2xl border border-border bg-background/90 p-3 text-center backdrop-blur md:inset-x-6 md:bottom-6 md:p-4">
+            <div className="absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2 rounded-2xl border border-white/40 bg-white/30 p-3 text-center backdrop-blur-xl md:inset-x-6 md:bottom-6 md:p-4">
               {t.hero.stats.map((s) => (
                 <div key={s.v}>
-                  <div className="font-display text-xl font-bold text-primary md:text-2xl">{s.k}</div>
-                  <div className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground md:text-xs">{s.v}</div>
+                  <div className="font-display text-xl font-semibold text-primary md:text-2xl">{s.k}</div>
+                  <div className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-foreground/70 md:text-xs">{s.v}</div>
                 </div>
               ))}
             </div>
