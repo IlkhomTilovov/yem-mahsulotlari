@@ -536,9 +536,9 @@ export function Header() {
           </div>
           <nav className="container-x mt-4 flex flex-col gap-1">
             {NAV.map((n) => (
-              <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary">
+              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary">
                 {n.label}
-              </a>
+              </Link>
             ))}
             <div className="mt-3 flex items-center gap-2 rounded-full border border-border bg-card p-0.5 self-start">
               {(["UZ", "RU", "EN"] as const).map((l) => (
