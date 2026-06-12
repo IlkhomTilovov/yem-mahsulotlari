@@ -803,28 +803,30 @@ function Quality() {
   const icons = [FlaskConical, PackageCheck, ShieldCheck];
   return (
     <Section id="quality" eyebrow={t.quality.eyebrow} title={t.quality.title} subtitle={t.quality.subtitle}>
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      <div className="mt-14 grid items-start gap-10 lg:mt-20 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {t.quality.certs.map((c) => (
-            <div key={c.t} className="card-surface flex flex-col items-start gap-2 p-5">
-              <Award className="h-6 w-6 text-primary" />
-              <div className="mt-2 font-display text-lg font-bold">{c.t}</div>
-              <div className="text-xs text-muted-foreground">{c.d}</div>
+            <div key={c.t} className="card-surface flex flex-col items-start p-6">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/10">
+                <Award className="h-5 w-5 text-primary" />
+              </span>
+              <div className="mt-4 font-display text-lg font-bold">{c.t}</div>
+              <div className="mt-1 text-xs text-muted-foreground">{c.d}</div>
             </div>
           ))}
         </div>
 
-        <ul className="space-y-5">
+        <ul className="space-y-7">
           {t.quality.points.map((p, i) => {
             const Icon = icons[i];
             return (
-              <li key={p.t} className="flex gap-4 rounded-[16px] border border-border bg-card p-5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-secondary text-primary">
+              <li key={p.t} className="flex gap-5 rounded-[16px] border border-border bg-card p-6 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.10)]">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                   <Icon className="h-5 w-5" />
                 </span>
                 <div className="min-w-0">
                   <div className="font-display text-lg font-bold">{p.t}</div>
-                  <p className="mt-1 text-sm text-muted-foreground">{p.d}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
                 </div>
               </li>
             );
