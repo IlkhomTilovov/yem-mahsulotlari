@@ -22,6 +22,11 @@ import {
   Building2,
   Sparkles,
   Quote,
+  Beaker,
+  Repeat,
+  BadgeCheck,
+  Tag as TagIcon,
+  Microscope,
 } from "lucide-react";
 
 import factoryHero from "@/assets/factory-hero.jpg";
