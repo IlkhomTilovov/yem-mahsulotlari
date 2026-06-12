@@ -489,9 +489,9 @@ export function Header() {
 
         <nav className="ml-auto hidden items-center gap-7 lg:flex">
           {NAV.map((n) => (
-            <a key={n.href} href={n.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            <Link key={n.to} to={n.to} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground [&.active]:text-foreground">
               {n.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
