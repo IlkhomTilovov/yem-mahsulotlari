@@ -1038,8 +1038,8 @@ function Footer() {
   const { t } = useT();
   const cols = t.footer.cols;
   return (
-    <footer className="border-t border-border bg-surface/60 pb-24 pt-16 lg:pb-14 lg:pt-[120px]">
-      <div className="container-x grid gap-10 lg:grid-cols-[1.2fr_2fr]">
+    <footer className="border-t border-border bg-surface/60 pb-28 pt-20 lg:pb-16 lg:pt-[140px]">
+      <div className="container-x grid items-start gap-10 lg:grid-cols-[1.2fr_2fr]">
         <div>
           <div className="flex items-center gap-2.5">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
@@ -1056,7 +1056,7 @@ function Footer() {
           <FooterCol title={cols.Contact.title} links={cols.Contact.links} />
         </div>
       </div>
-      <div className="container-x mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+      <div className="container-x mt-16 flex flex-col gap-3 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <span>© {new Date().getFullYear()} {t.footer.copyright}</span>
         <span>UZ · RU · EN</span>
       </div>
@@ -1067,11 +1067,11 @@ function Footer() {
 function FooterCol({ title, links }: { title: string; links: readonly string[] }) {
   return (
     <div>
-      <div className="text-xs font-semibold uppercase tracking-wider text-foreground">{title}</div>
-      <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+      <div className="text-sm font-bold uppercase tracking-[0.15em] text-foreground">{title}</div>
+      <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
         {links.map((l) => (
           <li key={l}>
-            <a href="#contact" className="hover:text-foreground">{l}</a>
+            <a href="#contact" className="transition-colors hover:text-foreground">{l}</a>
           </li>
         ))}
       </ul>
