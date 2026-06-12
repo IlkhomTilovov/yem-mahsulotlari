@@ -1,5 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Hero, TrustStrip } from "@/components/site";
+import {
+  Hero,
+  TrustStrip,
+  HomeStats,
+  HomeBenefits,
+  HomeVsMiddleman,
+  HomeProductsPreview,
+  HomePrivateLabel,
+  HomeHowItWorks,
+  HomeQualityScience,
+  HomeSocialProof,
+  HomeFinalCTA,
+} from "@/components/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,6 +32,15 @@ function HomePage() {
     <>
       <Hero />
       <TrustStrip />
+      <HomeStats />
+      <HomeBenefits />
+      <HomeVsMiddleman />
+      <HomeProductsPreview />
+      <HomePrivateLabel />
+      <HomeHowItWorks />
+      <HomeQualityScience />
+      <HomeSocialProof />
+      <HomeFinalCTA />
     </>
   );
 }
