@@ -1067,8 +1067,8 @@ function Footer() {
 function FooterCol({ title, links }: { title: string; links: readonly string[] }) {
   return (
     <div>
-      <div className="text-xs font-semibold uppercase tracking-wider text-foreground">{title}</div>
-      <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+      <div className="text-sm font-bold uppercase tracking-[0.15em] text-foreground">{title}</div>
+      <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
         {links.map((l) => (
           <li key={l}>
             <a href="#contact" className="hover:text-foreground">{l}</a>
