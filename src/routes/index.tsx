@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import {
   ArrowRight,
+  ChevronRight,
   ShieldCheck,
   Factory,
   Globe2,
