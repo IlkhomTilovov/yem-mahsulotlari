@@ -454,14 +454,14 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const NAV = [
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.products, href: "#products" },
-    { label: t.nav.privateLabel, href: "#private-label" },
-    { label: t.nav.quality, href: "#quality" },
-    { label: t.nav.production, href: "#production" },
-    { label: t.nav.export, href: "#export" },
-    { label: t.nav.contact, href: "#contact" },
+  const NAV: { label: string; to: string }[] = [
+    { label: t.nav.about, to: "/about" },
+    { label: t.nav.products, to: "/products" },
+    { label: t.nav.privateLabel, to: "/private-label" },
+    { label: t.nav.quality, to: "/quality" },
+    { label: t.nav.production, to: "/production" },
+    { label: t.nav.export, to: "/export" },
+    { label: t.nav.contact, to: "/contact" },
   ];
 
   useEffect(() => {
