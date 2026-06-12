@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { cn } from "@/lib/utils";
 import {
   ArrowRight,
   ChevronRight,
