@@ -421,9 +421,9 @@ type TT = (typeof T)[Lang];
 const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: TT }>({
   lang: "UZ", setLang: () => {}, t: T.UZ as TT,
 });
-const useT = () => useContext(LangCtx);
+export const useT = () => useContext(LangCtx);
 
-function Landing() {
+export function SiteLayout({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>("UZ");
   useEffect(() => {
     const saved = (typeof window !== "undefined" && localStorage.getItem("lang")) as Lang | null;
@@ -440,18 +440,7 @@ function Landing() {
     <LangCtx.Provider value={{ lang, setLang, t: T[lang] }}>
       <div className="min-h-screen bg-background text-foreground">
         <Header />
-        <main>
-          <Hero />
-          <TrustStrip />
-          <About />
-          <Products />
-          <PrivateLabel />
-          <Quality />
-          <Production />
-          <Export />
-          <SocialProof />
-          <Contact />
-        </main>
+        <main>{children}</main>
         <Footer />
         <MobileCTA />
       </div>
