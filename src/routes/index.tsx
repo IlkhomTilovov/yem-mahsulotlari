@@ -753,14 +753,14 @@ function PrivateLabel() {
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-warm">
             <Sparkles className="h-4 w-4" /> {t.pl.eyebrow}
           </span>
-          <h2 className="mt-5 text-4xl leading-[1.05] sm:text-5xl lg:text-[3.25rem]">
+          <h2 className="mt-5 text-4xl leading-[1.15] sm:text-5xl lg:text-[3.25rem]">
             {t.pl.titleA}<br />{t.pl.titleB}
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 sm:text-lg">{t.pl.body}</p>
 
           <ol className="mt-10 grid gap-4 sm:grid-cols-2">
             {t.pl.steps.map((s) => (
-              <li key={s.n} className="rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur transition-colors hover:bg-white/[0.1]">
+              <li key={s.n} className="rounded-[16px] border border-white/15 bg-white/[0.06] p-5 backdrop-blur transition-colors hover:bg-white/[0.1]">
                 <div className="font-display text-2xl font-extrabold text-warm">{s.n}</div>
                 <div className="mt-2 font-semibold">{s.t}</div>
                 <p className="mt-1 text-sm leading-relaxed text-primary-foreground/75">{s.d}</p>
@@ -797,7 +797,7 @@ function Quality() {
           {t.quality.points.map((p, i) => {
             const Icon = icons[i];
             return (
-              <li key={p.t} className="flex gap-4 rounded-2xl border border-border bg-card p-5">
+              <li key={p.t} className="flex gap-4 rounded-[16px] border border-border bg-card p-5">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-secondary text-primary">
                   <Icon className="h-5 w-5" />
                 </span>
@@ -817,11 +817,11 @@ function Quality() {
 function Production() {
   const { t } = useT();
   return (
-    <section id="production" className="bg-surface/60 py-20 lg:py-28">
+    <section id="production" className="bg-surface/60 py-16 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">{t.prod.eyebrow}</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl">{t.prod.title}</h2>
+          <h2 className="mt-4 text-3xl leading-[1.15] sm:text-4xl lg:text-5xl">{t.prod.title}</h2>
           <p className="mt-5 text-base text-muted-foreground sm:text-lg">{t.prod.sub}</p>
         </div>
 
@@ -865,7 +865,7 @@ function Export() {
 
         <div className="card-surface p-6 sm:p-8">
           <div className="text-xs font-semibold uppercase tracking-wider text-primary">{t.exp.currentlyExporting}</div>
-          <h3 className="mt-2 font-display text-2xl font-bold">{t.exp.countriesTitle}</h3>
+          <h3 className="mt-2 font-display text-2xl">{t.exp.countriesTitle}</h3>
           <ul className="mt-6 flex flex-wrap gap-2">
             {t.exp.countries.map((c) => (
               <li key={c} className="rounded-full border border-border bg-secondary px-3 py-1.5 text-sm font-medium text-secondary-foreground">
