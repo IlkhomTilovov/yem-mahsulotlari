@@ -883,11 +883,11 @@ function SocialProof() {
   const { t } = useT();
   const logos = ["PetCo Asia", "Nordic Paws", "MENA Vet", "PrimePet", "Aralia Trade", "Kalmar Foods"];
   return (
-    <section className="border-y border-border bg-card py-16 lg:py-20">
+    <section className="border-y border-border bg-card py-16 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">{t.social.eyebrow}</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">{t.social.title}</h2>
+          <h2 className="mt-4 text-3xl leading-[1.15] sm:text-4xl">{t.social.title}</h2>
         </div>
 
         <div className="mt-10 grid grid-cols-2 items-center gap-x-8 gap-y-6 opacity-70 sm:grid-cols-3 lg:grid-cols-6">
@@ -920,7 +920,7 @@ function Contact() {
           {sent ? (
             <div className="flex flex-col items-start gap-3 py-6">
               <CheckCircle2 className="h-8 w-8 text-primary" />
-              <h3 className="font-display text-2xl font-bold">{t.contact.received}</h3>
+              <h3 className="font-display text-2xl">{t.contact.received}</h3>
               <p className="text-muted-foreground">{t.contact.receivedSub}</p>
             </div>
           ) : (
@@ -993,7 +993,7 @@ function Footer() {
   const { t } = useT();
   const cols = t.footer.cols;
   return (
-    <footer className="border-t border-border bg-surface/60 pb-24 pt-14 lg:pb-14">
+    <footer className="border-t border-border bg-surface/60 pb-24 pt-16 lg:pb-14 lg:pt-[120px]">
       <div className="container-x grid gap-10 lg:grid-cols-[1.2fr_2fr]">
         <div>
           <div className="flex items-center gap-2.5">
@@ -1049,11 +1049,11 @@ function Section({
   id, eyebrow, title, subtitle, children,
 }: { id?: string; eyebrow?: string; title: string; subtitle?: string; children: ReactNode }) {
   return (
-    <section id={id} className="py-20 lg:py-28">
+    <section id={id} className="py-16 lg:py-[120px]">
       <div className="container-x">
         <div className="max-w-3xl">
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem]">{title}</h2>
+          <h2 className="mt-4 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">{title}</h2>
           {subtitle && <p className="mt-5 text-base text-muted-foreground sm:text-lg">{subtitle}</p>}
         </div>
         <div className="mt-12 lg:mt-16">{children}</div>
