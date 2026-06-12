@@ -409,8 +409,9 @@ const T = {
       eyebrow: "Trusted by international partners",
       title: "Distributors building their brands with us.",
       testimonials: [
-        { q: "Consistent quality batch after batch, and the private-label flexibility let us launch our own brand in 8 months.", a: "Distributor, Kazakhstan" },
-        { q: "Documentation arrived perfect with the first container. Customs cleared without a single delay.", a: "Importer, UAE" },
+        { q: "Consistent quality batch after batch, and the private-label flexibility let us launch our own brand in 8 months.", name: "Azamat R.", role: "Distributor", country: "Kazakhstan" },
+        { q: "Documentation arrived perfect with the first container. Customs cleared without a single delay.", name: "Fatima A.", role: "Importer", country: "UAE" },
+        { q: "Every container arrives with QC lab reports. We've been working together for 3 years and have never been disappointed.", name: "Mehmet K.", role: "Private-label brand", country: "Turkey" },
       ],
     },
     contact: {
