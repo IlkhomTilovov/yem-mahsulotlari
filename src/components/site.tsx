@@ -34,7 +34,7 @@ import wetCat from "@/assets/product-wet-cat.jpg";
 import treats from "@/assets/product-treats.jpg";
 
 /* ---------------- i18n ---------------- */
-type Lang = "UZ" | "RU" | "EN";
+export type Lang = "UZ" | "RU" | "EN";
 
 const T = {
   UZ: {
@@ -449,7 +449,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 }
 
 /* ---------------- Header ---------------- */
-function Header() {
+export function Header() {
   const { lang, setLang, t } = useT();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -478,7 +478,7 @@ function Header() {
       }`}
     >
       <div className="container-x flex h-16 items-center gap-4 md:h-20">
-        <a href="#top" className="flex shrink-0 items-center gap-2.5">
+        <a href="/" className="flex shrink-0 items-center gap-2.5">
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
             <Leaf className="h-5 w-5" />
           </span>
@@ -509,7 +509,7 @@ function Header() {
               </button>
             ))}
           </div>
-          <a href="#contact" className="hidden btn-warm md:inline-flex">
+          <a href="/contact" className="hidden btn-warm md:inline-flex">
             {t.cta.quote} <ArrowRight className="h-4 w-4" />
           </a>
           <button
@@ -553,7 +553,7 @@ function Header() {
                 </button>
               ))}
             </div>
-            <a href="#contact" onClick={() => setOpen(false)} className="btn-warm mt-4">
+            <a href="/contact" onClick={() => setOpen(false)} className="btn-warm mt-4">
               {t.cta.quote} <ArrowRight className="h-4 w-4" />
             </a>
           </nav>
@@ -564,7 +564,7 @@ function Header() {
 }
 
 /* ---------------- Hero ---------------- */
-function Hero() {
+export function Hero() {
   const { t } = useT();
   return (
     <section id="top" className="relative overflow-hidden">
@@ -578,8 +578,8 @@ function Hero() {
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">{t.hero.sub}</p>
 
           <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#contact" className="btn-warm px-8 py-4 text-base">{t.cta.quote} <ArrowRight className="h-4 w-4" /></a>
-            <a href="#products" className="btn-outline"><FileDown className="h-4 w-4" /> {t.cta.catalog}</a>
+            <a href="/contact" className="btn-warm px-8 py-4 text-base">{t.cta.quote} <ArrowRight className="h-4 w-4" /></a>
+            <a href="/products" className="btn-outline"><FileDown className="h-4 w-4" /> {t.cta.catalog}</a>
           </div>
 
           <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-muted-foreground sm:grid-cols-3">
@@ -610,7 +610,7 @@ function Hero() {
   );
 }
 
-function TrustStrip() {
+export function TrustStrip() {
   const { t } = useT();
   return (
     <section aria-label="Certifications" className="border-y border-border bg-surface/60">
@@ -625,7 +625,7 @@ function TrustStrip() {
   );
 }
 
-function About() {
+export function About() {
   const { t } = useT();
   const icons = [Factory, Globe2, Building2, PackageCheck];
   return (
@@ -652,7 +652,7 @@ function About() {
   );
 }
 
-function Products() {
+export function Products() {
   const { t } = useT();
   const cats = ["All", "Dog", "Cat", "Snacks"] as const;
   const [filter, setFilter] = useState<typeof cats[number]>("All");
@@ -676,7 +676,7 @@ function Products() {
             </button>
           ))}
         </div>
-        <a href="#contact" className="ml-auto hidden text-sm font-semibold text-primary hover:underline sm:inline-flex">
+        <a href="/contact" className="ml-auto hidden text-sm font-semibold text-primary hover:underline sm:inline-flex">
           {t.products.downloadPdf}
         </a>
       </div>
@@ -707,8 +707,8 @@ function Products() {
                 <Spec label={t.products.spec.shelf} value={p.shelf} />
               </dl>
               <div className="mt-6 grid grid-cols-2 gap-3">
-                <a href="#contact" className="btn-primary w-full justify-center !py-2.5 !text-sm">{t.cta.reqQuote}</a>
-                <a href="#contact" className="btn-outline w-full justify-center !py-2.5 !text-sm">{t.cta.reqSample}</a>
+                <a href="/contact" className="btn-primary w-full justify-center !py-2.5 !text-sm">{t.cta.reqQuote}</a>
+                <a href="/contact" className="btn-outline w-full justify-center !py-2.5 !text-sm">{t.cta.reqSample}</a>
               </div>
             </div>
           </article>
@@ -727,7 +727,7 @@ function Spec({ label, value }: { label: string; value: string }) {
   );
 }
 
-function PrivateLabel() {
+export function PrivateLabel() {
   const { t } = useT();
   return (
     <section id="private-label" className="bg-primary text-primary-foreground">
@@ -759,7 +759,7 @@ function PrivateLabel() {
             ))}
           </ol>
 
-          <a href="#contact" className="mt-14 inline-flex items-center gap-2.5 rounded-xl bg-warm px-8 py-4 text-base font-bold text-warm-foreground transition-transform hover:-translate-y-0.5">
+          <a href="/contact" className="mt-14 inline-flex items-center gap-2.5 rounded-xl bg-warm px-8 py-4 text-base font-bold text-warm-foreground transition-transform hover:-translate-y-0.5">
             {t.cta.startPL} <ArrowRight className="h-5 w-5" />
           </a>
         </div>
@@ -768,7 +768,7 @@ function PrivateLabel() {
   );
 }
 
-function Quality() {
+export function Quality() {
   const { t } = useT();
   const icons = [FlaskConical, PackageCheck, ShieldCheck];
   return (
@@ -807,7 +807,7 @@ function Quality() {
   );
 }
 
-function Production() {
+export function Production() {
   const { t } = useT();
   return (
     <section id="production" className="bg-surface/60 py-16 lg:py-[120px]">
@@ -840,7 +840,7 @@ function Production() {
   );
 }
 
-function Export() {
+export function Export() {
   const { t } = useT();
   const icons = [Truck, PackageCheck, ShieldCheck, Globe2];
   return (
@@ -875,7 +875,7 @@ function Export() {
   );
 }
 
-function SocialProof() {
+export function SocialProof() {
   const { t } = useT();
   const logos = ["PetCo Asia", "Nordic Paws", "MENA Vet", "PrimePet", "Aralia Trade", "Kalmar Foods"];
   return (
@@ -920,7 +920,7 @@ function SocialProof() {
   );
 }
 
-function Contact() {
+export function Contact() {
   const { t } = useT();
   const [sent, setSent] = useState(false);
   return (
@@ -999,7 +999,7 @@ function ContactRow({ icon: Icon, title, value, href, cta }: { icon: typeof Mess
   );
 }
 
-function Footer() {
+export function Footer() {
   const { t } = useT();
   const cols = t.footer.cols;
   return (
@@ -1036,7 +1036,7 @@ function FooterCol({ title, links }: { title: string; links: readonly string[] }
       <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
         {links.map((l) => (
           <li key={l}>
-            <a href="#contact" className="transition-colors hover:text-foreground">{l}</a>
+            <a href="/contact" className="transition-colors hover:text-foreground">{l}</a>
           </li>
         ))}
       </ul>
@@ -1044,11 +1044,11 @@ function FooterCol({ title, links }: { title: string; links: readonly string[] }
   );
 }
 
-function MobileCTA() {
+export function MobileCTA() {
   const { t } = useT();
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 p-3 backdrop-blur lg:hidden">
-      <a href="#contact" className="btn-warm w-full !py-3.5">
+      <a href="/contact" className="btn-warm w-full !py-3.5">
         {t.cta.quote} <ArrowRight className="h-4 w-4" />
       </a>
     </div>
