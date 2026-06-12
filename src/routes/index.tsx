@@ -763,7 +763,10 @@ function PrivateLabel() {
     <section id="private-label" className="bg-primary text-primary-foreground">
       <div className="container-x grid gap-12 py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:py-[120px]">
         <div>
-          <div className="overflow-hidden rounded-3xl border border-white/15">
+          <div
+            className="overflow-hidden rounded-3xl border border-white/15"
+            style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.28)" }}
+          >
             <img src={privateLabelImg} alt={t.pl.imgAlt} width={1400} height={1000} loading="lazy" className="aspect-[4/5] w-full object-cover" />
           </div>
         </div>
@@ -771,23 +774,23 @@ function PrivateLabel() {
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-warm">
             <Sparkles className="h-4 w-4" /> {t.pl.eyebrow}
           </span>
-          <h2 className="mt-5 text-4xl leading-[1.15] sm:text-5xl lg:text-[3.25rem]">
+          <h2 className="mt-6 text-4xl leading-[1.15] sm:text-5xl lg:text-[3.25rem]">
             {t.pl.titleA}<br />{t.pl.titleB}
           </h2>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 sm:text-lg">{t.pl.body}</p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/85 sm:text-lg">{t.pl.body}</p>
 
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2">
+          <ol className="mt-14 grid gap-5 sm:grid-cols-2">
             {t.pl.steps.map((s) => (
-              <li key={s.n} className="rounded-[16px] border border-white/15 bg-white/[0.06] p-5 backdrop-blur transition-colors hover:bg-white/[0.1]">
-                <div className="font-display text-2xl font-extrabold text-warm">{s.n}</div>
-                <div className="mt-2 font-semibold">{s.t}</div>
-                <p className="mt-1 text-sm leading-relaxed text-primary-foreground/75">{s.d}</p>
+              <li key={s.n} className="rounded-[16px] border border-white/20 bg-white/[0.06] p-7 backdrop-blur transition-colors hover:bg-white/[0.11]">
+                <div className="font-display text-3xl font-extrabold text-warm sm:text-4xl">{s.n}</div>
+                <div className="mt-3 font-semibold">{s.t}</div>
+                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/75">{s.d}</p>
               </li>
             ))}
           </ol>
 
-          <a href="#contact" className="mt-10 inline-flex items-center gap-2 rounded-xl bg-warm px-6 py-3.5 text-sm font-bold text-warm-foreground transition-transform hover:-translate-y-0.5">
-            {t.cta.startPL} <ArrowRight className="h-4 w-4" />
+          <a href="#contact" className="mt-14 inline-flex items-center gap-2.5 rounded-xl bg-warm px-8 py-4 text-base font-bold text-warm-foreground transition-transform hover:-translate-y-0.5">
+            {t.cta.startPL} <ArrowRight className="h-5 w-5" />
           </a>
         </div>
       </div>
