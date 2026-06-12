@@ -977,8 +977,8 @@ function Contact() {
               <div className="sm:col-span-2">
                 <Field label={t.contact.labels.message} name="message" textarea placeholder={t.contact.messagePh} />
               </div>
-              <button type="submit" className="btn-warm sm:col-span-2 !py-3.5">
-                {t.cta.sendInquiry} <ArrowRight className="h-4 w-4" />
+              <button type="submit" className="btn-warm w-full sm:col-span-2 !py-4 text-base">
+                {t.cta.sendInquiry} <ArrowRight className="h-5 w-5" />
               </button>
               <p className="text-xs text-muted-foreground sm:col-span-2">{t.contact.privacy}</p>
             </div>
