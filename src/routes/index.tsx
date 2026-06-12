@@ -644,10 +644,10 @@ function TrustStrip() {
   const { t } = useT();
   return (
     <section aria-label="Certifications" className="border-y border-border bg-surface/60">
-      <div className="container-x flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-8 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+      <div className="container-x flex flex-wrap items-center justify-center gap-x-14 gap-y-4 py-10 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {t.trust.map((i) => (
-          <span key={i} className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-primary" /> {i}
+          <span key={i} className="inline-flex items-center gap-2.5">
+            <ShieldCheck className="h-4 w-4 shrink-0 text-primary" /> {i}
           </span>
         ))}
       </div>
