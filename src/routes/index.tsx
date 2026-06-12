@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { cn } from "@/lib/utils";
 import {
   ArrowRight,
   ChevronRight,
@@ -958,9 +959,9 @@ function Contact() {
   const { t } = useT();
   const [sent, setSent] = useState(false);
   return (
-    <Section id="contact" eyebrow={t.contact.eyebrow} title={t.contact.title}>
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
-        <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="card-surface p-6 sm:p-8">
+    <Section id="contact" eyebrow={t.contact.eyebrow} title={t.contact.title} className="py-20 lg:py-[140px]">
+      <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
+        <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="card-surface p-8 sm:p-10">
           {sent ? (
             <div className="flex flex-col items-start gap-3 py-6">
               <CheckCircle2 className="h-8 w-8 text-primary" />
@@ -976,8 +977,8 @@ function Contact() {
               <div className="sm:col-span-2">
                 <Field label={t.contact.labels.message} name="message" textarea placeholder={t.contact.messagePh} />
               </div>
-              <button type="submit" className="btn-warm sm:col-span-2 !py-3.5">
-                {t.cta.sendInquiry} <ArrowRight className="h-4 w-4" />
+              <button type="submit" className="btn-warm w-full sm:col-span-2 !py-4 text-base">
+                {t.cta.sendInquiry} <ArrowRight className="h-5 w-5" />
               </button>
               <p className="text-xs text-muted-foreground sm:col-span-2">{t.contact.privacy}</p>
             </div>
@@ -1003,7 +1004,7 @@ function Field({
   label, name, type = "text", required, textarea, placeholder,
 }: { label: string; name: string; type?: string; required?: boolean; textarea?: boolean; placeholder?: string }) {
   const cls =
-    "mt-1.5 w-full rounded-lg border border-input bg-background px-3.5 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/15";
+    "mt-1.5 w-full rounded-lg border border-input bg-background px-3.5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-[3px] focus:ring-primary/20";
   return (
     <label className="block">
       <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -1021,7 +1022,7 @@ function Field({
 function ContactRow({ icon: Icon, title, value, href, cta }: { icon: typeof MessageCircle; title: string; value: string; href: string; cta: string }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" className="card-surface flex items-center gap-4 p-5">
-      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary">
+      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
         <Icon className="h-5 w-5" />
       </span>
       <div className="min-w-0 flex-1">
@@ -1090,10 +1091,10 @@ function MobileCTA() {
 }
 
 function Section({
-  id, eyebrow, title, subtitle, children,
-}: { id?: string; eyebrow?: string; title: string; subtitle?: string; children: ReactNode }) {
+  id, eyebrow, title, subtitle, className, children,
+}: { id?: string; eyebrow?: string; title: string; subtitle?: string; className?: string; children: ReactNode }) {
   return (
-    <section id={id} className="py-16 lg:py-[120px]">
+    <section id={id} className={cn("py-16 lg:py-[120px]", className)}>
       <div className="container-x">
         <div className="max-w-3xl">
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
