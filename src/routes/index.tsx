@@ -1090,10 +1090,10 @@ function MobileCTA() {
 }
 
 function Section({
-  id, eyebrow, title, subtitle, children,
-}: { id?: string; eyebrow?: string; title: string; subtitle?: string; children: ReactNode }) {
+  id, eyebrow, title, subtitle, className, children,
+}: { id?: string; eyebrow?: string; title: string; subtitle?: string; className?: string; children: ReactNode }) {
   return (
-    <section id={id} className="py-16 lg:py-[120px]">
+    <section id={id} className={cn("py-16 lg:py-[120px]", className)}>
       <div className="container-x">
         <div className="max-w-3xl">
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
