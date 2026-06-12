@@ -959,9 +959,9 @@ function Contact() {
   const { t } = useT();
   const [sent, setSent] = useState(false);
   return (
-    <Section id="contact" eyebrow={t.contact.eyebrow} title={t.contact.title}>
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
-        <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="card-surface p-6 sm:p-8">
+    <Section id="contact" eyebrow={t.contact.eyebrow} title={t.contact.title} className="py-20 lg:py-[140px]">
+      <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
+        <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="card-surface p-8 sm:p-10">
           {sent ? (
             <div className="flex flex-col items-start gap-3 py-6">
               <CheckCircle2 className="h-8 w-8 text-primary" />
