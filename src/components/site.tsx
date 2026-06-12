@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import {
@@ -32,30 +32,6 @@ import wetDog from "@/assets/product-wet-dog.jpg";
 import dryCat from "@/assets/product-dry-cat.jpg";
 import wetCat from "@/assets/product-wet-cat.jpg";
 import treats from "@/assets/product-treats.jpg";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Steppe Nutrition — O'zbekistondagi uy hayvonlari ozuqasi ishlab chiqaruvchisi va eksportchisi" },
-      { name: "description", content: "O'zbekistondan ishonchli B2B uy hayvonlari ozuqasi yetkazib beruvchi hamkor. Mushuk va itlar uchun quruq va ho'l ozuqa. Private label, eksportga tayyor sertifikatlar, raqobatbardosh narxlar." },
-      { property: "og:title", content: "Steppe Nutrition — Uy hayvonlari ozuqasi ishlab chiqaruvchi va eksportchi" },
-      { property: "og:description", content: "Markaziy Osiyodan ishonchli uy hayvonlari ozuqasi yetkazib beruvchi hamkoringiz. Private label OEM, ISO sertifikatlangan, 20+ davlatga eksport." },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [{
-      type: "application/ld+json",
-      children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        name: "Steppe Nutrition",
-        description: "O'zbekistonda joylashgan uy hayvonlari ozuqasi ishlab chiqaruvchi va eksportchi. Mushuk va itlar uchun quruq va ho'l ozuqa. Xalqaro distribyutorlar uchun Private label OEM hamkor.",
-        address: { "@type": "PostalAddress", addressCountry: "UZ", addressLocality: "Toshkent" },
-      }),
-    }],
-  }),
-  component: Landing,
-});
 
 /* ---------------- i18n ---------------- */
 type Lang = "UZ" | "RU" | "EN";
