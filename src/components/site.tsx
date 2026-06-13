@@ -1441,13 +1441,13 @@ export function HomeSocialProof() {
 /* BLOK 9 — Final CTA banner */
 export function HomeFinalCTA() {
   return (
-    <section className="bg-[oklch(0.22_0.04_165)] text-white">
+    <section className="bg-secondary text-foreground">
       <div className="container-x py-20 lg:py-[120px]">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-            Hamkorlikni boshlang. <span className="text-warm">24 soat ichida</span> javob beramiz.
+            Hamkorlikni boshlang. <span className="text-primary">24 soat ichida</span> javob beramiz.
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-white/75 sm:text-lg">
+          <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
             Distribyutor yoki importyormisiz? Narx, MOQ va namuna uchun so'rov yuboring — eksport jamoamiz tezda bog'lanadi.
           </p>
 
@@ -1456,10 +1456,10 @@ export function HomeFinalCTA() {
               Narx so'rash <ArrowRight className="h-5 w-5" />
             </Link>
             <div className="flex items-center gap-3">
-              <a href="https://wa.me/998900000000" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-12 w-12 place-items-center rounded-xl border border-white/15 bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]">
+              <a href="https://wa.me/998900000000" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:bg-muted">
                 <MessageCircle className="h-5 w-5" />
               </a>
-              <a href="https://t.me/steppe_nutrition" target="_blank" rel="noreferrer" aria-label="Telegram" className="grid h-12 w-12 place-items-center rounded-xl border border-white/15 bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]">
+              <a href="https://t.me/steppe_nutrition" target="_blank" rel="noreferrer" aria-label="Telegram" className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:bg-muted">
                 <Send className="h-5 w-5" />
               </a>
             </div>
