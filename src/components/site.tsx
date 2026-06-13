@@ -599,11 +599,11 @@ export function Hero() {
         <div className="relative">
           <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-card)]">
             <img src={factoryHero} alt={t.hero.imgAlt} width={1600} height={1100} className="aspect-[4/5] w-full object-cover lg:aspect-[5/6]" />
-            <div className="absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2 rounded-2xl border border-white/40 bg-white/30 p-3 text-center backdrop-blur-xl md:inset-x-6 md:bottom-6 md:p-4">
+            <div className="absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2 rounded-2xl border border-white/15 bg-[linear-gradient(135deg,rgba(0,0,0,0.62),rgba(0,0,0,0.5))] p-3 text-center shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] backdrop-blur-xl md:inset-x-6 md:bottom-6 md:p-4">
               {t.hero.stats.map((s) => (
                 <div key={s.v}>
-                  <div className="font-display text-xl font-semibold text-primary md:text-2xl">{s.k}</div>
-                  <div className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-foreground/70 md:text-xs">{s.v}</div>
+                  <div className="font-display text-xl font-semibold text-white md:text-2xl">{s.k}</div>
+                  <div className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-white/80 md:text-xs">{s.v}</div>
                 </div>
               ))}
             </div>
@@ -1106,10 +1106,9 @@ export function HomeStats() {
         {items.map(({ icon: Icon, k, v }) => (
           <div
             key={v}
-            className="group rounded-2xl border border-border/60 bg-card p-8 transition-all duration-300 hover:-translate-y-1"
-            style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}
+            className="group rounded-2xl border border-border/60 bg-card p-8 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-12px_rgba(0,0,0,0.18)]"
           >
-            <span className="inline-grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
+            <span className="inline-grid h-12 w-12 place-items-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/20 transition-colors group-hover:bg-primary/20">
               <Icon className="h-5 w-5" />
             </span>
             <div className="mt-6 font-display text-5xl font-extrabold tracking-tight text-foreground">{k}</div>
@@ -1148,11 +1147,10 @@ export function HomeBenefits() {
           {items.map(({ icon: Icon, t, d }) => (
             <div
               key={t}
-              className="flex gap-5 rounded-2xl border border-border/60 bg-card p-7 transition-all duration-300 hover:-translate-y-1"
-              style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}
+              className="group flex gap-5 rounded-2xl border border-border/60 bg-card p-9 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[0_20px_44px_-14px_rgba(0,0,0,0.18)]"
             >
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                <Icon className="h-5 w-5" />
+              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-primary/15 text-primary ring-1 ring-primary/20 transition-colors group-hover:bg-primary/25">
+                <Icon className="h-6 w-6" />
               </span>
               <div>
                 <div className="font-display text-lg font-bold">{t}</div>
@@ -1183,22 +1181,22 @@ export function HomeVsMiddleman() {
         </div>
 
         <div className="mx-auto mt-14 grid max-w-5xl items-stretch gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-8">
-            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/60">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-8 opacity-85">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/50">
               Vositachi orqali
             </div>
-            <h3 className="mt-3 font-display text-2xl font-bold">Qo'shimcha xarajat va xavf</h3>
+            <h3 className="mt-3 font-display text-2xl font-bold text-primary-foreground/85">Qo'shimcha xarajat va xavf</h3>
             <ul className="mt-7 space-y-4">
               {left.map((i) => (
-                <li key={i} className="flex items-start gap-3 text-primary-foreground/80">
-                  <X className="mt-0.5 h-5 w-5 shrink-0 text-primary-foreground/50" />
+                <li key={i} className="flex items-start gap-3 text-primary-foreground/65">
+                  <X className="mt-0.5 h-5 w-5 shrink-0 text-primary-foreground/40" />
                   <span className="text-sm leading-relaxed">{i}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="relative rounded-2xl border border-warm/40 bg-white/[0.07] p-8 ring-1 ring-warm/30">
+          <div className="relative rounded-2xl border-2 border-warm/60 bg-white/[0.09] p-8 shadow-[0_0_0_1px_rgba(255,184,77,0.15),0_20px_50px_-12px_rgba(255,184,77,0.35)] ring-1 ring-warm/40">
             <span className="absolute -top-3 left-8 rounded-full bg-warm px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-warm-foreground">
               Steppe Nutrition
             </span>
