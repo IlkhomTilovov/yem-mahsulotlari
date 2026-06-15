@@ -1024,7 +1024,7 @@ export function Footer() {
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
               <Leaf className="h-5 w-5" />
             </span>
-            <span className="font-display text-lg font-extrabold">Steppe Nutrition</span>
+            <span className="font-display text-lg font-extrabold">Logo</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">{t.footer.blurb}</p>
         </div>
