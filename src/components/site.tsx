@@ -170,7 +170,7 @@ const T = {
   },
   RU: {
     nav: { about: "Компания", products: "Продукция", privateLabel: "Private Label", quality: "Качество", production: "Производство", export: "Экспорт", contact: "Контакты" },
-    cta: { quote: "Запросить цену", catalog: "Скачать каталог", startPL: "Начать Private Label проект", sendInquiry: "Отправить запрос", reqQuote: "Запросить цену", reqSample: "Запросить образец" },
+    cta: { quote: "Запросить цену", catalog: "Скачать каталог", products: "Продукты", startPL: "Начать Private Label проект", sendInquiry: "Отправить запрос", reqQuote: "Запросить цену", reqSample: "Запросить образец" },
     hero: {
       eyebrow: "B2B Производитель · Экспортёр",
       titleA: "Ваш надёжный партнёр по поставкам кормов для животных из",
