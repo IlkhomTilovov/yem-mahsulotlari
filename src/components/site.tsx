@@ -488,7 +488,7 @@ export function Header() {
             <Leaf className="h-5 w-5" />
           </span>
           <span className="font-display text-lg font-extrabold tracking-tight">
-            Steppe<span className="text-primary"> Nutrition</span>
+            Logo
           </span>
         </a>
 
