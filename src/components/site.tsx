@@ -296,7 +296,7 @@ const T = {
   },
   EN: {
     nav: { about: "About", products: "Products", privateLabel: "Private Label", quality: "Quality", production: "Production", export: "Export", contact: "Contact" },
-    cta: { quote: "Request a Quote", catalog: "Download Catalog", startPL: "Start a Private Label Project", sendInquiry: "Send Inquiry", reqQuote: "Request Quote", reqSample: "Request Sample" },
+    cta: { quote: "Request a Quote", catalog: "Download Catalog", products: "Products", startPL: "Start a Private Label Project", sendInquiry: "Send Inquiry", reqQuote: "Request Quote", reqSample: "Request Sample" },
     hero: {
       eyebrow: "B2B Manufacturer · Exporter",
       titleA: "Your reliable pet food supply partner from",
