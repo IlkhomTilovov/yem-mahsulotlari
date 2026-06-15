@@ -488,7 +488,7 @@ export function Header() {
             <Leaf className="h-5 w-5" />
           </span>
           <span className="font-display text-lg font-extrabold tracking-tight">
-            Steppe<span className="text-primary"> Nutrition</span>
+            Logo
           </span>
         </a>
 
@@ -530,7 +530,7 @@ export function Header() {
       {open && (
         <div className="fixed inset-0 z-50 bg-background lg:hidden">
           <div className="container-x flex h-16 items-center">
-            <span className="font-display text-lg font-extrabold">Steppe Nutrition</span>
+            <span className="font-display text-lg font-extrabold">Logo</span>
             <button
               className="ml-auto grid h-10 w-10 place-items-center rounded-lg border border-border"
               onClick={() => setOpen(false)}
@@ -1024,7 +1024,7 @@ export function Footer() {
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
               <Leaf className="h-5 w-5" />
             </span>
-            <span className="font-display text-lg font-extrabold">Steppe Nutrition</span>
+            <span className="font-display text-lg font-extrabold">Logo</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">{t.footer.blurb}</p>
         </div>
