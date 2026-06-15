@@ -514,9 +514,6 @@ export function Header() {
               </button>
             ))}
           </div>
-          <a href="/contact" className="hidden btn-warm md:inline-flex">
-            {t.cta.quote} <ArrowRight className="h-4 w-4" />
-          </a>
           <button
             className="grid h-10 w-10 place-items-center rounded-lg border border-border lg:hidden"
             onClick={() => setOpen(true)}
