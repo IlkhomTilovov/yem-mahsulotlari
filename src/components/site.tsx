@@ -583,7 +583,7 @@ export function Hero() {
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">{t.hero.sub}</p>
 
           <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="/contact" className="btn-warm px-8 py-4 text-base">{t.cta.quote} <ArrowRight className="h-4 w-4" /></a>
+            <a href="/products" className="btn-warm px-8 py-4 text-base">{t.cta.products} <ArrowRight className="h-4 w-4" /></a>
             <a href="/products" className="btn-outline"><FileDown className="h-4 w-4" /> {t.cta.catalog}</a>
           </div>
 
