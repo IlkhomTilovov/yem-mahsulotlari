@@ -530,7 +530,7 @@ export function Header() {
       {open && (
         <div className="fixed inset-0 z-50 bg-background lg:hidden">
           <div className="container-x flex h-16 items-center">
-            <span className="font-display text-lg font-extrabold">Steppe Nutrition</span>
+            <span className="font-display text-lg font-extrabold">Logo</span>
             <button
               className="ml-auto grid h-10 w-10 place-items-center rounded-lg border border-border"
               onClick={() => setOpen(false)}
