@@ -43,7 +43,7 @@ export type Lang = "UZ" | "RU" | "EN";
 
 const T = {
   UZ: {
-    nav: { about: "Kompaniya", products: "Mahsulotlar", privateLabel: "Private Label", quality: "Sifat", production: "Ishlab chiqarish", export: "Eksport", contact: "Aloqa" },
+    nav: { about: "Kompaniya", products: "Mahsulotlar", privateLabel: "Private Label", quality: "Sifat", production: "Ishlab chiqarish", export: "Eksport", contact: "Aloqa", feedback: "Ariza qoldirish" },
     cta: { quote: "Narx so'rash", catalog: "Katalogni yuklab olish", products: "Mahsulotlar", startPL: "Private Label loyihasini boshlash", sendInquiry: "So'rovni yuborish", reqQuote: "Narx so'rash", reqSample: "Namuna so'rash" },
     hero: {
       eyebrow: "B2B ishlab chiqaruvchi · Eksportchi",
@@ -169,7 +169,7 @@ const T = {
     },
   },
   RU: {
-    nav: { about: "Компания", products: "Продукция", privateLabel: "Private Label", quality: "Качество", production: "Производство", export: "Экспорт", contact: "Контакты" },
+    nav: { about: "Компания", products: "Продукция", privateLabel: "Private Label", quality: "Качество", production: "Производство", export: "Экспорт", contact: "Контакты", feedback: "Оставить обращение" },
     cta: { quote: "Запросить цену", catalog: "Скачать каталог", products: "Продукты", startPL: "Начать Private Label проект", sendInquiry: "Отправить запрос", reqQuote: "Запросить цену", reqSample: "Запросить образец" },
     hero: {
       eyebrow: "B2B Производитель · Экспортёр",
@@ -295,7 +295,7 @@ const T = {
     },
   },
   EN: {
-    nav: { about: "About", products: "Products", privateLabel: "Private Label", quality: "Quality", production: "Production", export: "Export", contact: "Contact" },
+    nav: { about: "About", products: "Products", privateLabel: "Private Label", quality: "Quality", production: "Production", export: "Export", contact: "Contact", feedback: "Leave Feedback" },
     cta: { quote: "Request a Quote", catalog: "Download Catalog", products: "Products", startPL: "Start a Private Label Project", sendInquiry: "Send Inquiry", reqQuote: "Request Quote", reqSample: "Request Sample" },
     hero: {
       eyebrow: "B2B Manufacturer · Exporter",
