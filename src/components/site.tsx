@@ -584,7 +584,7 @@ export function Hero() {
 
           <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a href="/products" className="btn-warm px-8 py-4 text-base">{t.cta.products} <ArrowRight className="h-4 w-4" /></a>
-            <a href="/products" className="btn-outline"><FileDown className="h-4 w-4" /> {t.cta.catalog}</a>
+            <a href="/contact" className="btn-outline"><FileDown className="h-4 w-4" /> {t.cta.application}</a>
           </div>
 
           <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-muted-foreground sm:grid-cols-3">
