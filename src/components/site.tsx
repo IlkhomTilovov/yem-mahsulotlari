@@ -44,7 +44,7 @@ export type Lang = "UZ" | "RU" | "EN";
 const T = {
   UZ: {
     nav: { about: "Kompaniya", products: "Mahsulotlar", privateLabel: "Private Label", quality: "Sifat", production: "Ishlab chiqarish", export: "Eksport", contact: "Aloqa" },
-    cta: { quote: "Narx so'rash", catalog: "Katalogni yuklab olish", products: "Mahsulotlar", startPL: "Private Label loyihasini boshlash", sendInquiry: "So'rovni yuborish", reqQuote: "Narx so'rash", reqSample: "Namuna so'rash" },
+    cta: { quote: "Narx so'rash", catalog: "Katalogni yuklab olish", application: "Ariza qoldirish", products: "Mahsulotlar", startPL: "Private Label loyihasini boshlash", sendInquiry: "So'rovni yuborish", reqQuote: "Narx so'rash", reqSample: "Namuna so'rash" },
     hero: {
       eyebrow: "B2B ishlab chiqaruvchi · Eksportchi",
       titleA: "Markaziy Osiyodan uy hayvonlari ozuqasi yetkazib beruvchi",
