@@ -163,7 +163,7 @@ const T = {
         Company: { title: "Kompaniya", links: ["Kompaniya haqida", "Ishlab chiqarish", "Sifat", "Eksport"] },
         Products: { title: "Mahsulotlar", links: ["Quruq it ozuqasi", "Ho'l it ozuqasi", "Quruq mushuk ozuqasi", "Ho'l mushuk ozuqasi", "Shirinliklar"] },
         Partners: { title: "Hamkorlar", links: ["Private Label", "Distribyutorlar", "Katalog"] },
-        Contact: { title: "Aloqa", links: ["Narx so'rash", "WhatsApp", "Telegram", "Email"] },
+        Contact: { title: "Aloqa", links: ["Narx so'rash", "Ariza qoldirish", "WhatsApp", "Telegram", "Email"] },
       },
       copyright: "Steppe Nutrition MChJ · O'zbekistonda ishlab chiqarilgan",
     },
@@ -289,7 +289,7 @@ const T = {
         Company: { title: "Компания", links: ["О нас", "Производство", "Качество", "Экспорт"] },
         Products: { title: "Продукция", links: ["Сухой корм для собак", "Влажный корм для собак", "Сухой корм для кошек", "Влажный корм для кошек", "Лакомства"] },
         Partners: { title: "Партнёры", links: ["Private Label", "Дистрибьюторы", "Каталог"] },
-        Contact: { title: "Контакты", links: ["Запросить цену", "WhatsApp", "Telegram", "Email"] },
+        Contact: { title: "Контакты", links: ["Запросить цену", "Оставить обращение", "WhatsApp", "Telegram", "Email"] },
       },
       copyright: "Steppe Nutrition LLC · Произведено в Узбекистане",
     },
@@ -415,7 +415,7 @@ const T = {
         Company: { title: "Company", links: ["About", "Production", "Quality", "Export"] },
         Products: { title: "Products", links: ["Dry Dog Food", "Wet Dog Food", "Dry Cat Food", "Wet Cat Food", "Treats"] },
         Partners: { title: "Partners", links: ["Private Label", "Distributors", "Catalog"] },
-        Contact: { title: "Contact", links: ["Request Quote", "WhatsApp", "Telegram", "Email"] },
+        Contact: { title: "Contact", links: ["Request Quote", "Leave Feedback", "WhatsApp", "Telegram", "Email"] },
       },
       copyright: "Steppe Nutrition LLC · Made in Uzbekistan",
     },
@@ -467,6 +467,7 @@ export function Header() {
     { label: t.nav.production, to: "/production" },
     { label: t.nav.export, to: "/export" },
     { label: t.nav.contact, to: "/contact" },
+    { label: t.nav.feedback, to: "/contact" },
   ];
 
   useEffect(() => {
