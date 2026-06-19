@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useHeaderSettings, useNavItems } from "@/hooks/use-site-header";
+import { useSiteCopy, applyOverrides, type CopyMap } from "@/hooks/use-site-copy";
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
@@ -424,13 +425,24 @@ const T = {
 } as const;
 
 type TT = (typeof T)[Lang];
-const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: TT }>({
-  lang: "UZ", setLang: () => {}, t: T.UZ as TT,
+type Tx = (key: string, fallback: string) => string;
+const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: TT; tx: Tx }>({
+  lang: "UZ", setLang: () => {}, t: T.UZ as TT, tx: (_k, f) => f,
 });
 export const useT = () => useContext(LangCtx);
 
+function makeTx(copy: CopyMap | undefined, lang: Lang): Tx {
+  const langKey = `value_${lang.toLowerCase()}` as "value_uz" | "value_ru" | "value_en";
+  return (key, fallback) => {
+    const row = copy?.[key];
+    if (!row) return fallback;
+    return (row[langKey] ?? row.value_uz ?? fallback) || fallback;
+  };
+}
+
 export function SiteLayout({ children }: { children: ReactNode }) {
   const { data: settings } = useHeaderSettings();
+  const { data: copy } = useSiteCopy();
   const [lang, setLang] = useState<Lang>("UZ");
   const [hydrated, setHydrated] = useState(false);
 
@@ -440,7 +452,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     setHydrated(true);
   }, []);
 
-  // Apply default language from settings on first load when nothing is saved
   useEffect(() => {
     if (!hydrated || !settings) return;
     const saved = typeof window !== "undefined" ? localStorage.getItem("lang") : null;
@@ -456,8 +467,11 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     }
   }, [lang]);
 
+  const t = useMemo(() => applyOverrides(T[lang], copy, lang) as TT, [lang, copy]);
+  const tx = useMemo(() => makeTx(copy, lang), [copy, lang]);
+
   return (
-    <LangCtx.Provider value={{ lang, setLang, t: T[lang] }}>
+    <LangCtx.Provider value={{ lang, setLang, t, tx }}>
       <div className="min-h-screen bg-background text-foreground">
         <Header />
         <main>{children}</main>
@@ -683,7 +697,14 @@ export function Hero() {
 }
 
 export function TrustStrip() {
-  const certs = ["ISO 22000", "HACCP", "GMP+", "EAC", "Veterinariya tasdig'i"];
+  const { tx } = useT();
+  const certs = [
+    tx("trust.0", "ISO 22000"),
+    tx("trust.1", "HACCP"),
+    tx("trust.2", "GMP+"),
+    tx("trust.3", "EAC"),
+    tx("trust.4", "Veterinariya tasdig'i"),
+  ];
   return (
     <section aria-label="Certifications" className="border-y border-border bg-[oklch(0.97_0.012_85)]">
       <div className="container-x py-7 md:py-9">
@@ -1161,18 +1182,19 @@ function Section({
 
 /* BLOK 1 — Stats */
 export function HomeStats() {
-  const items = [
-    { icon: Factory, k: "12 000+", v: "Tonna / yil quvvat" },
-    { icon: Globe2, k: "20+", v: "Eksport davlatlari" },
-    { icon: Award, k: "12", v: "Yillik tajriba" },
-    { icon: PackageCheck, k: "40+", v: "Mahsulot turlari (SKU)" },
-  ];
+  const { tx } = useT();
+  const icons = [Factory, Globe2, Award, PackageCheck];
+  const items = [0, 1, 2, 3].map((i) => ({
+    icon: icons[i],
+    k: tx(`home.stats.${i}.k`, ["12 000+", "20+", "12", "40+"][i]),
+    v: tx(`home.stats.${i}.v`, ["Tonna / yil quvvat", "Eksport davlatlari", "Yillik tajriba", "Mahsulot turlari (SKU)"][i]),
+  }));
   return (
     <section className="bg-background py-20 lg:py-[120px]">
       <div className="container-x grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {items.map(({ icon: Icon, k, v }) => (
+        {items.map(({ icon: Icon, k, v }, i) => (
           <div
-            key={v}
+            key={i}
             className="group rounded-2xl border border-border/60 bg-card p-8 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-12px_rgba(0,0,0,0.18)]"
           >
             <span className="inline-grid h-12 w-12 place-items-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/20 transition-colors group-hover:bg-primary/20">
@@ -1190,30 +1212,36 @@ export function HomeStats() {
 
 /* BLOK 2 — Afzalliklar */
 export function HomeBenefits() {
-  const items = [
-    { icon: Beaker, t: "Doimiy sifat", d: "Har partiya laboratoriyada tekshiriladi." },
-    { icon: Repeat, t: "Barqaror yetkazib berish", d: "Prognoz qilinadigan muddatlar va hajmlar." },
-    { icon: TagIcon, t: "Private-label moslashuvchanligi", d: "Sizning brendingiz, yuqori marja." },
-    { icon: BadgeCheck, t: "Sertifikatlangan eksport", d: "ISO, HACCP, to'liq hujjatlar." },
+  const { tx } = useT();
+  const icons = [Beaker, Repeat, TagIcon, BadgeCheck];
+  const defaults = [
+    { t: "Doimiy sifat", d: "Har partiya laboratoriyada tekshiriladi." },
+    { t: "Barqaror yetkazib berish", d: "Prognoz qilinadigan muddatlar va hajmlar." },
+    { t: "Private-label moslashuvchanligi", d: "Sizning brendingiz, yuqori marja." },
+    { t: "Sertifikatlangan eksport", d: "ISO, HACCP, to'liq hujjatlar." },
   ];
+  const items = defaults.map((d, i) => ({
+    icon: icons[i],
+    t: tx(`home.benefits.${i}.t`, d.t),
+    d: tx(`home.benefits.${i}.d`, d.d),
+  }));
   return (
     <section className="bg-background py-20 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="eyebrow justify-center">Nega Steppe Nutrition</span>
+          <span className="eyebrow justify-center">{tx("home.benefits.eyebrow", "Nega Steppe Nutrition")}</span>
           <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-            Faqat mahsulot emas — ishonchli biznes hamkor.
+            {tx("home.benefits.title", "Faqat mahsulot emas — ishonchli biznes hamkor.")}
           </h2>
           <p className="mt-6 text-base text-muted-foreground sm:text-lg">
-            Distribyutorlar va importyorlar bizdan shunchaki uy hayvonlari ozuqasidan ko'proq narsa oladi —
-            doimiy sifat, barqaror yetkazib berish va marjangizni himoya qiluvchi private-label moslashuvchanligi.
+            {tx("home.benefits.sub", "Distribyutorlar va importyorlar bizdan shunchaki uy hayvonlari ozuqasidan ko'proq narsa oladi — doimiy sifat, barqaror yetkazib berish va marjangizni himoya qiluvchi private-label moslashuvchanligi.")}
           </p>
         </div>
 
         <div className="mx-auto mt-16 grid max-w-5xl gap-6 sm:grid-cols-2">
-          {items.map(({ icon: Icon, t, d }) => (
+          {items.map(({ icon: Icon, t, d }, i) => (
             <div
-              key={t}
+              key={i}
               className="group flex gap-5 rounded-2xl border border-border/60 bg-card p-9 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[0_20px_44px_-14px_rgba(0,0,0,0.18)]"
             >
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-primary/15 text-primary ring-1 ring-primary/20 transition-colors group-hover:bg-primary/25">
@@ -1233,17 +1261,20 @@ export function HomeBenefits() {
 
 /* BLOK 3 — Vositachi vs Ishlab chiqaruvchi */
 export function HomeVsMiddleman() {
-  const left = ["Yuqori narx — qo'shimcha qatlam marja", "Sifat nazorati yo'q", "Sekin javob va noaniq muddatlar", "Noaniq kelib chiqish"];
-  const right = ["Zavod narxi — to'g'ridan-to'g'ri", "To'liq sifat nazorati va laboratoriya", "24 soat ichida javob", "Shaffof kelib chiqish va hujjatlar"];
+  const { tx } = useT();
+  const leftDef = ["Yuqori narx — qo'shimcha qatlam marja", "Sifat nazorati yo'q", "Sekin javob va noaniq muddatlar", "Noaniq kelib chiqish"];
+  const rightDef = ["Zavod narxi — to'g'ridan-to'g'ri", "To'liq sifat nazorati va laboratoriya", "24 soat ichida javob", "Shaffof kelib chiqish va hujjatlar"];
+  const left = leftDef.map((d, i) => tx(`home.vs.left.${i}`, d));
+  const right = rightDef.map((d, i) => tx(`home.vs.right.${i}`, d));
   return (
     <section className="bg-primary text-primary-foreground py-20 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-warm">
-            <Sparkles className="h-4 w-4" /> To'g'ridan-to'g'ri ishlab chiqaruvchidan
+            <Sparkles className="h-4 w-4" /> {tx("home.vs.eyebrow", "To'g'ridan-to'g'ri ishlab chiqaruvchidan")}
           </span>
           <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-            Vositachidan emas — to'g'ridan-to'g'ri ishlab chiqaruvchidan.
+            {tx("home.vs.title", "Vositachidan emas — to'g'ridan-to'g'ri ishlab chiqaruvchidan.")}
           </h2>
         </div>
 
@@ -1252,10 +1283,10 @@ export function HomeVsMiddleman() {
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/50">
               Vositachi orqali
             </div>
-            <h3 className="mt-3 font-display text-2xl font-bold text-primary-foreground/85">Qo'shimcha xarajat va xavf</h3>
+            <h3 className="mt-3 font-display text-2xl font-bold text-primary-foreground/85">{tx("home.vs.left.title", "Qo'shimcha xarajat va xavf")}</h3>
             <ul className="mt-7 space-y-4">
-              {left.map((i) => (
-                <li key={i} className="flex items-start gap-3 text-primary-foreground/65">
+              {left.map((i, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-primary-foreground/65">
                   <X className="mt-0.5 h-5 w-5 shrink-0 text-primary-foreground/40" />
                   <span className="text-sm leading-relaxed">{i}</span>
                 </li>
@@ -1270,10 +1301,10 @@ export function HomeVsMiddleman() {
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-warm">
               Steppe Nutrition bilan
             </div>
-            <h3 className="mt-3 font-display text-2xl font-bold">Zavod narxi va to'liq nazorat</h3>
+            <h3 className="mt-3 font-display text-2xl font-bold">{tx("home.vs.right.title", "Zavod narxi va to'liq nazorat")}</h3>
             <ul className="mt-7 space-y-4">
-              {right.map((i) => (
-                <li key={i} className="flex items-start gap-3">
+              {right.map((i, idx) => (
+                <li key={idx} className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-warm" />
                   <span className="text-sm leading-relaxed">{i}</span>
                 </li>
@@ -1288,6 +1319,7 @@ export function HomeVsMiddleman() {
 
 /* BLOK 4 — Mahsulotlar preview (3) */
 export function HomeProductsPreview() {
+  const { tx } = useT();
   const items = [
     { name: "Premium quruq it ozuqasi", img: dryDog, protein: "26%", sizes: "1, 3, 10, 20 kg", shelf: "18 oy", catLabel: "It · Quruq" },
     { name: "Sousli ho'l it ozuqasi", img: wetDog, protein: "10%", sizes: "100, 200, 400 g", shelf: "24 oy", catLabel: "It · Ho'l" },
@@ -1297,12 +1329,12 @@ export function HomeProductsPreview() {
     <section className="bg-background py-20 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="eyebrow justify-center">Mahsulotlarimiz</span>
+          <span className="eyebrow justify-center">{tx("home.productsPreview.eyebrow", "Mahsulotlarimiz")}</span>
           <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-            Eksportga tayyor asosiy yo'nalishlar
+            {tx("home.productsPreview.title", "Eksportga tayyor asosiy yo'nalishlar")}
           </h2>
           <p className="mt-5 text-base text-muted-foreground sm:text-lg">
-            Sertifikatlangan retseptlar, doimiy sifat. To'liq katalogda 40+ SKU.
+            {tx("home.productsPreview.sub", "Sertifikatlangan retseptlar, doimiy sifat. To'liq katalogda 40+ SKU.")}
           </p>
         </div>
 
@@ -1324,7 +1356,7 @@ export function HomeProductsPreview() {
                   <Spec label="Qadoq" value={p.sizes} />
                   <Spec label="Saqlash" value={p.shelf} />
                 </dl>
-                <a href="/contact" className="btn-primary mt-6 w-full justify-center !py-2.5 !text-sm">Narx so'rash</a>
+                <a href="/contact" className="btn-primary mt-6 w-full justify-center !py-2.5 !text-sm">{tx("cta.reqQuote", "Narx so'rash")}</a>
               </div>
             </article>
           ))}
@@ -1332,7 +1364,7 @@ export function HomeProductsPreview() {
 
         <div className="mt-12 flex justify-center">
           <Link to="/products" className="btn-warm px-8 py-4 text-base">
-            Barcha mahsulotlar <ArrowRight className="h-4 w-4" />
+            {tx("home.productsPreview.allBtn", "Barcha mahsulotlar")} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
@@ -1342,12 +1374,9 @@ export function HomeProductsPreview() {
 
 /* BLOK 5 — Private Label highlight */
 export function HomePrivateLabel() {
-  const steps = [
-    { n: "01", t: "Retsept" },
-    { n: "02", t: "Qadoqlash" },
-    { n: "03", t: "Ishlab chiqarish" },
-    { n: "04", t: "Eksport" },
-  ];
+  const { tx } = useT();
+  const stepDefs = ["Retsept", "Qadoqlash", "Ishlab chiqarish", "Eksport"];
+  const steps = stepDefs.map((d, i) => ({ n: `0${i + 1}`, t: tx(`home.pl.steps.${i}`, d) }));
   return (
     <section className="bg-primary text-primary-foreground py-20 lg:py-[120px]">
       <div className="container-x">
@@ -1356,11 +1385,10 @@ export function HomePrivateLabel() {
             <Sparkles className="h-4 w-4" /> Private Label
           </span>
           <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-            Sizning brendingiz, bizning ishlab chiqarishimiz.
+            {tx("home.pl.title", "Sizning brendingiz, bizning ishlab chiqarishimiz.")}
           </h2>
           <p className="mt-6 text-base leading-relaxed text-primary-foreground/85 sm:text-lg">
-            Private-label / OEM ishlab chiqarish — mahsulot sizning brendingiz ostida chiqariladi.
-            Zavod narxi tufayli sizda yuqori marja, biz esa sifat va hujjatlarni to'liq olib boramiz.
+            {tx("home.pl.sub", "Private-label / OEM ishlab chiqarish — mahsulot sizning brendingiz ostida chiqariladi. Zavod narxi tufayli sizda yuqori marja, biz esa sifat va hujjatlarni to'liq olib boramiz.")}
           </p>
         </div>
 
@@ -1375,7 +1403,7 @@ export function HomePrivateLabel() {
 
         <div className="mt-12 flex justify-center">
           <Link to="/private-label" className="inline-flex items-center gap-2.5 rounded-xl bg-warm px-8 py-4 text-base font-bold text-warm-foreground transition-transform hover:-translate-y-0.5">
-            Private Label haqida batafsil <ArrowRight className="h-5 w-5" />
+            {tx("home.pl.cta", "Private Label haqida batafsil")} <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
       </div>
@@ -1385,18 +1413,20 @@ export function HomePrivateLabel() {
 
 /* BLOK 6 — How it works 1-2-3 */
 export function HomeHowItWorks() {
-  const steps = [
-    { n: 1, t: "So'rov yuboring", d: "Mahsulot, hajm va talablaringizni ayting." },
-    { n: 2, t: "Namuna va taklif oling", d: "Namuna yuboramiz, narx va shartlarni kelishamiz." },
-    { n: 3, t: "Buyurtma va eksport", d: "Ishlab chiqaramiz va hujjatlar bilan yetkazamiz." },
+  const { tx } = useT();
+  const defs = [
+    { t: "So'rov yuboring", d: "Mahsulot, hajm va talablaringizni ayting." },
+    { t: "Namuna va taklif oling", d: "Namuna yuboramiz, narx va shartlarni kelishamiz." },
+    { t: "Buyurtma va eksport", d: "Ishlab chiqaramiz va hujjatlar bilan yetkazamiz." },
   ];
+  const steps = defs.map((d, i) => ({ n: i + 1, t: tx(`home.how.${i}.t`, d.t), d: tx(`home.how.${i}.d`, d.d) }));
   return (
     <section className="bg-surface/60 py-20 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="eyebrow justify-center">Jarayon</span>
+          <span className="eyebrow justify-center">{tx("home.how.eyebrow", "Jarayon")}</span>
           <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-            Hamkorlik qanday boshlanadi
+            {tx("home.how.title", "Hamkorlik qanday boshlanadi")}
           </h2>
         </div>
 
@@ -1415,7 +1445,7 @@ export function HomeHowItWorks() {
 
         <div className="mt-14 flex justify-center">
           <Link to="/contact" className="btn-warm px-8 py-4 text-base">
-            So'rovni boshlang <ArrowRight className="h-4 w-4" />
+            {tx("home.how.cta", "So'rovni boshlang")} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
@@ -1425,12 +1455,14 @@ export function HomeHowItWorks() {
 
 /* BLOK 7 — Quality / science */
 export function HomeQualityScience() {
-  const points = [
+  const { tx } = useT();
+  const defs = [
     "O'z laboratoriyamizda sifat nazorati",
     "Veterinar-nutritsionist nazorati",
     "AAFCO standartlariga to'liq moslik",
     "Har partiya sertifikatlanadi",
   ];
+  const points = defs.map((d, i) => tx(`home.qs.points.${i}`, d));
   return (
     <section className="bg-background py-20 lg:py-[120px]">
       <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
@@ -1439,14 +1471,14 @@ export function HomeQualityScience() {
         </div>
         <div>
           <span className="eyebrow">
-            <Microscope className="h-4 w-4" /> Sifat bilan boshqariladi
+            <Microscope className="h-4 w-4" /> {tx("home.qs.eyebrow", "Sifat bilan boshqariladi")}
           </span>
           <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.5rem]">
-            Retseptlar veterinar-nutritsionistlar tomonidan ishlab chiqilgan.
+            {tx("home.qs.title", "Retseptlar veterinar-nutritsionistlar tomonidan ishlab chiqilgan.")}
           </h2>
           <ul className="mt-10 space-y-5">
-            {points.map((p) => (
-              <li key={p} className="flex items-start gap-3">
+            {points.map((p, i) => (
+              <li key={i} className="flex items-start gap-3">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                 <span className="text-base text-foreground/90">{p}</span>
               </li>
@@ -1460,15 +1492,15 @@ export function HomeQualityScience() {
 
 /* BLOK 8 — Partners + testimonials */
 export function HomeSocialProof() {
-  const { t } = useT();
+  const { t, tx } = useT();
   const logos = ["PetCo Asia", "Nordic Paws", "MENA Vet", "PrimePet", "Aralia Trade", "Kalmar Foods"];
   return (
     <section className="bg-surface/60 py-20 lg:py-[120px]">
       <div className="container-x">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="eyebrow justify-center">Hamkorlar</span>
+          <span className="eyebrow justify-center">{tx("home.social.eyebrow", "Hamkorlar")}</span>
           <h2 className="mt-5 text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-            Xalqaro hamkorlar ishonadi
+            {tx("home.social.title", "Xalqaro hamkorlar ishonadi")}
           </h2>
         </div>
 
@@ -1505,20 +1537,21 @@ export function HomeSocialProof() {
 
 /* BLOK 9 — Final CTA banner */
 export function HomeFinalCTA() {
+  const { tx } = useT();
   return (
     <section className="bg-secondary text-foreground">
       <div className="container-x py-20 lg:py-[120px]">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-            Hamkorlikni boshlang. <span className="text-primary">24 soat ichida</span> javob beramiz.
+            {tx("home.finalCta.titleA", "Hamkorlikni boshlang.")} <span className="text-primary">{tx("home.finalCta.titleHi", "24 soat ichida")}</span> {tx("home.finalCta.titleB", "javob beramiz.")}
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Distribyutor yoki importyormisiz? Narx, MOQ va namuna uchun so'rov yuboring — eksport jamoamiz tezda bog'lanadi.
+            {tx("home.finalCta.sub", "Distribyutor yoki importyormisiz? Narx, MOQ va namuna uchun so'rov yuboring — eksport jamoamiz tezda bog'lanadi.")}
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link to="/contact" className="inline-flex items-center gap-2.5 rounded-xl bg-warm px-8 py-4 text-base font-bold text-warm-foreground transition-transform hover:-translate-y-0.5">
-              Narx so'rash <ArrowRight className="h-5 w-5" />
+              {tx("home.finalCta.btn", "Narx so'rash")} <ArrowRight className="h-5 w-5" />
             </Link>
             <div className="flex items-center gap-3">
               <a href="https://wa.me/998900000000" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:bg-muted">
