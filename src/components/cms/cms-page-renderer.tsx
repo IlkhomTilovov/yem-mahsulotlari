@@ -1,6 +1,8 @@
+import * as React from "react";
 import { Link } from "@tanstack/react-router";
 import { useT, type Lang } from "@/components/site";
 import type { CmsSection } from "@/hooks/use-cms-page";
+
 
 const pick = (c: Record<string, unknown>, key: string, lang: Lang): string => {
   const k = `${key}_${lang.toLowerCase()}`;
@@ -145,14 +147,15 @@ function CtaSection({ content }: { content: Record<string, unknown> }) {
       <div className="container max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-bold">{pick(content, "title", lang)}</h2>
         <p className="mt-4 opacity-90">{pick(content, "description", lang)}</p>
-        {pick(content, "button_text", lang) && content.button_url && (
+        {pick(content, "button_text", lang) && content.button_url ? (
           <Link
             to={content.button_url as string}
             className="inline-flex mt-6 px-6 py-3 rounded-md bg-background text-foreground font-medium"
           >
             {pick(content, "button_text", lang)}
           </Link>
-        )}
+        ) : null}
+
       </div>
     </section>
   );
@@ -175,7 +178,7 @@ function HtmlSection({ content }: { content: Record<string, unknown> }) {
   return <section className="py-8 container max-w-5xl mx-auto px-4" dangerouslySetInnerHTML={{ __html: (content.html as string) || "" }} />;
 }
 
-const SECTION_COMPONENTS: Record<string, (p: { content: Record<string, unknown> }) => JSX.Element | null> = {
+const SECTION_COMPONENTS: Record<string, (p: { content: Record<string, unknown> }) => React.ReactElement | null> = {
   hero: HeroSection,
   text: TextSection,
   image: ImageSection,
