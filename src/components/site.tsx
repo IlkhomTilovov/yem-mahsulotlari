@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useHeaderSettings, useNavItems } from "@/hooks/use-site-header";
 import { useSiteCopy, applyOverrides, type CopyMap } from "@/hooks/use-site-copy";
 import { cn } from "@/lib/utils";
