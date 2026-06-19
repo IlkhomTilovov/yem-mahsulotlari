@@ -35,8 +35,10 @@ function TranslationsPage() {
 
   const save = useMutation({
     mutationFn: async (row: Row) => {
-      const { error } = await supabase
-        .from("site_translations" as never)
+      const { error } = await (supabase
+        .from("site_translations" as never) as unknown as {
+          upsert: (r: Row, opts: { onConflict: string }) => Promise<{ error: Error | null }>;
+        })
         .upsert(row, { onConflict: "key" });
       if (error) throw error;
     },
