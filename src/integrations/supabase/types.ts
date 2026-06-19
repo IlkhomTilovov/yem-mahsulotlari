@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      header_settings: {
+        Row: {
+          cta_enabled: boolean
+          cta_text_en: string
+          cta_text_ru: string
+          cta_text_uz: string
+          cta_url: string
+          default_lang: string
+          id: boolean
+          lang_en_enabled: boolean
+          lang_ru_enabled: boolean
+          lang_uz_enabled: boolean
+          logo_image_url: string | null
+          logo_link: string
+          logo_text: string
+          show_logo_image: boolean
+          show_logo_text: boolean
+          updated_at: string
+        }
+        Insert: {
+          cta_enabled?: boolean
+          cta_text_en?: string
+          cta_text_ru?: string
+          cta_text_uz?: string
+          cta_url?: string
+          default_lang?: string
+          id?: boolean
+          lang_en_enabled?: boolean
+          lang_ru_enabled?: boolean
+          lang_uz_enabled?: boolean
+          logo_image_url?: string | null
+          logo_link?: string
+          logo_text?: string
+          show_logo_image?: boolean
+          show_logo_text?: boolean
+          updated_at?: string
+        }
+        Update: {
+          cta_enabled?: boolean
+          cta_text_en?: string
+          cta_text_ru?: string
+          cta_text_uz?: string
+          cta_url?: string
+          default_lang?: string
+          id?: boolean
+          lang_en_enabled?: boolean
+          lang_ru_enabled?: boolean
+          lang_uz_enabled?: boolean
+          logo_image_url?: string | null
+          logo_link?: string
+          logo_text?: string
+          show_logo_image?: boolean
+          show_logo_text?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           company_name: string | null
@@ -59,6 +116,45 @@ export type Database = {
           source?: string | null
           status?: Database["public"]["Enums"]["lead_status"]
           updated_at?: string
+        }
+        Relationships: []
+      }
+      nav_items: {
+        Row: {
+          created_at: string
+          id: string
+          open_new_tab: boolean
+          sort_order: number
+          title_en: string
+          title_ru: string
+          title_uz: string
+          updated_at: string
+          url: string
+          visible: boolean
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          open_new_tab?: boolean
+          sort_order?: number
+          title_en: string
+          title_ru: string
+          title_uz: string
+          updated_at?: string
+          url: string
+          visible?: boolean
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          open_new_tab?: boolean
+          sort_order?: number
+          title_en?: string
+          title_ru?: string
+          title_uz?: string
+          updated_at?: string
+          url?: string
+          visible?: boolean
         }
         Relationships: []
       }
