@@ -24,7 +24,10 @@ export function useSiteCopy() {
       }
       return map;
     },
-    staleTime: 30_000,
+    staleTime: 0,
+    gcTime: 0,
+    refetchOnWindowFocus: true,
+    refetchOnMount: "always",
   });
 }
 

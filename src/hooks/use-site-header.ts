@@ -37,7 +37,8 @@ export function useHeaderSettings() {
       if (error) throw error;
       return data as unknown as HeaderSettings | null;
     },
-    staleTime: 60_000,
+    staleTime: 0,
+    refetchOnMount: "always",
   });
 }
 
@@ -53,6 +54,7 @@ export function useNavItems() {
       if (error) throw error;
       return (data ?? []) as unknown as NavItem[];
     },
-    staleTime: 60_000,
+    staleTime: 0,
+    refetchOnMount: "always",
   });
 }
