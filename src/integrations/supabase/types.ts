@@ -14,16 +14,263 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          company_name: string | null
+          contact_name: string
+          country: string | null
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          notes: string | null
+          phone: string | null
+          product_interest: string | null
+          source: string | null
+          status: Database["public"]["Enums"]["lead_status"]
+          updated_at: string
+        }
+        Insert: {
+          company_name?: string | null
+          contact_name: string
+          country?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          notes?: string | null
+          phone?: string | null
+          product_interest?: string | null
+          source?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string | null
+          contact_name?: string
+          country?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          notes?: string | null
+          phone?: string | null
+          product_interest?: string | null
+          source?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      product_categories: {
+        Row: {
+          created_at: string
+          id: string
+          name_en: string
+          name_ru: string
+          name_uz: string
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name_en: string
+          name_ru: string
+          name_uz: string
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name_en?: string
+          name_ru?: string
+          name_uz?: string
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          category_id: string | null
+          cover_image_url: string | null
+          created_at: string
+          description_en: string | null
+          description_ru: string | null
+          description_uz: string | null
+          fat_pct: number | null
+          featured: boolean
+          feeding_guide_en: string | null
+          feeding_guide_ru: string | null
+          feeding_guide_uz: string | null
+          gallery_urls: string[] | null
+          id: string
+          ingredients_en: string | null
+          ingredients_ru: string | null
+          ingredients_uz: string | null
+          moisture_pct: number | null
+          name_en: string | null
+          name_ru: string | null
+          name_uz: string
+          packaging_sizes: string[] | null
+          pdf_url: string | null
+          product_type: string | null
+          protein_pct: number | null
+          shelf_life_months: number | null
+          sku: string
+          slug: string
+          status: Database["public"]["Enums"]["product_status"]
+          updated_at: string
+        }
+        Insert: {
+          category_id?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          description_en?: string | null
+          description_ru?: string | null
+          description_uz?: string | null
+          fat_pct?: number | null
+          featured?: boolean
+          feeding_guide_en?: string | null
+          feeding_guide_ru?: string | null
+          feeding_guide_uz?: string | null
+          gallery_urls?: string[] | null
+          id?: string
+          ingredients_en?: string | null
+          ingredients_ru?: string | null
+          ingredients_uz?: string | null
+          moisture_pct?: number | null
+          name_en?: string | null
+          name_ru?: string | null
+          name_uz: string
+          packaging_sizes?: string[] | null
+          pdf_url?: string | null
+          product_type?: string | null
+          protein_pct?: number | null
+          shelf_life_months?: number | null
+          sku: string
+          slug: string
+          status?: Database["public"]["Enums"]["product_status"]
+          updated_at?: string
+        }
+        Update: {
+          category_id?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          description_en?: string | null
+          description_ru?: string | null
+          description_uz?: string | null
+          fat_pct?: number | null
+          featured?: boolean
+          feeding_guide_en?: string | null
+          feeding_guide_ru?: string | null
+          feeding_guide_uz?: string | null
+          gallery_urls?: string[] | null
+          id?: string
+          ingredients_en?: string | null
+          ingredients_ru?: string | null
+          ingredients_uz?: string | null
+          moisture_pct?: number | null
+          name_en?: string | null
+          name_ru?: string | null
+          name_uz?: string
+          packaging_sizes?: string[] | null
+          pdf_url?: string | null
+          product_type?: string | null
+          protein_pct?: number | null
+          shelf_life_months?: number | null
+          sku?: string
+          slug?: string
+          status?: Database["public"]["Enums"]["product_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "product_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "super_admin" | "content_manager" | "sales_manager"
+      lead_status:
+        | "new"
+        | "contacted"
+        | "negotiating"
+        | "sample_sent"
+        | "won"
+        | "lost"
+      product_status: "draft" | "published"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +397,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["super_admin", "content_manager", "sales_manager"],
+      lead_status: [
+        "new",
+        "contacted",
+        "negotiating",
+        "sample_sent",
+        "won",
+        "lost",
+      ],
+      product_status: ["draft", "published"],
+    },
   },
 } as const
