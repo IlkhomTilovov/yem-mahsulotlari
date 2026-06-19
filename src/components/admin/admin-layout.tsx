@@ -2,7 +2,7 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { useAdminAuth, type AppRole } from "@/hooks/use-admin-auth";
 import { Button } from "@/components/ui/button";
-import { Loader2, LayoutDashboard, Package, Users, MessageSquare, LogOut, Settings, FolderTree } from "lucide-react";
+import { Loader2, LayoutDashboard, Package, Users, MessageSquare, LogOut, Settings, FolderTree, PanelTop } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -16,6 +16,7 @@ const NAV: NavItem[] = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { to: "/admin/products", label: "Mahsulotlar", icon: Package, roles: ["super_admin", "content_manager"] },
   { to: "/admin/categories", label: "Kategoriyalar", icon: FolderTree, roles: ["super_admin", "content_manager"] },
+  { to: "/admin/header", label: "Header & Nav", icon: PanelTop, roles: ["super_admin", "content_manager"] },
   { to: "/admin/leads", label: "Sorovlar (CRM)", icon: MessageSquare, roles: ["super_admin", "sales_manager"] },
   { to: "/admin/users", label: "Foydalanuvchilar", icon: Users, roles: ["super_admin"] },
   { to: "/admin/settings", label: "Sozlamalar", icon: Settings, roles: ["super_admin"] },
