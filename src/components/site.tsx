@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useHeaderSettings, useNavItems } from "@/hooks/use-site-header";
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
