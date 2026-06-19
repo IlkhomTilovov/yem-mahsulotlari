@@ -4,9 +4,11 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Toaster } from "@/components/ui/sonner";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
@@ -124,12 +126,19 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const bare = pathname.startsWith("/admin") || pathname.startsWith("/auth");
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteLayout>
+      {bare ? (
         <Outlet />
-      </SiteLayout>
+      ) : (
+        <SiteLayout>
+          <Outlet />
+        </SiteLayout>
+      )}
+      <Toaster richColors position="top-right" />
     </QueryClientProvider>
   );
 }
