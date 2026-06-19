@@ -158,6 +158,107 @@ export type Database = {
         }
         Relationships: []
       }
+      page_sections: {
+        Row: {
+          content: Json
+          created_at: string
+          id: string
+          page_id: string
+          section_type: string
+          sort_order: number
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          content?: Json
+          created_at?: string
+          id?: string
+          page_id: string
+          section_type: string
+          sort_order?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          content?: Json
+          created_at?: string
+          id?: string
+          page_id?: string
+          section_type?: string
+          sort_order?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "page_sections_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pages: {
+        Row: {
+          created_at: string
+          id: string
+          is_system: boolean
+          og_image_url: string | null
+          published: boolean
+          seo_description_en: string | null
+          seo_description_ru: string | null
+          seo_description_uz: string | null
+          seo_keywords: string | null
+          seo_title_en: string | null
+          seo_title_ru: string | null
+          seo_title_uz: string | null
+          slug: string
+          title_en: string
+          title_ru: string
+          title_uz: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_system?: boolean
+          og_image_url?: string | null
+          published?: boolean
+          seo_description_en?: string | null
+          seo_description_ru?: string | null
+          seo_description_uz?: string | null
+          seo_keywords?: string | null
+          seo_title_en?: string | null
+          seo_title_ru?: string | null
+          seo_title_uz?: string | null
+          slug: string
+          title_en?: string
+          title_ru?: string
+          title_uz?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_system?: boolean
+          og_image_url?: string | null
+          published?: boolean
+          seo_description_en?: string | null
+          seo_description_ru?: string | null
+          seo_description_uz?: string | null
+          seo_keywords?: string | null
+          seo_title_en?: string | null
+          seo_title_ru?: string | null
+          seo_title_uz?: string | null
+          slug?: string
+          title_en?: string
+          title_ru?: string
+          title_uz?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       product_categories: {
         Row: {
           created_at: string
