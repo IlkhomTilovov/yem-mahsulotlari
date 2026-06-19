@@ -331,9 +331,9 @@ function PageBuilder() {
           <h1 className="text-2xl font-bold mt-1">{data.page.title_uz || data.page.slug}</h1>
           <p className="text-sm text-muted-foreground">/{data.page.slug}</p>
         </div>
-        <Link to="/$slug" params={{ slug: data.page.slug }} className="text-sm text-primary hover:underline">
+        <a href={`/${data.page.slug}`} target="_blank" rel="noreferrer" className="text-sm text-primary hover:underline">
           Saytda ko'rish →
-        </Link>
+        </a>
       </div>
 
       <div>
