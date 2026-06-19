@@ -429,11 +429,25 @@ const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: TT }>
 export const useT = () => useContext(LangCtx);
 
 export function SiteLayout({ children }: { children: ReactNode }) {
+  const { data: settings } = useHeaderSettings();
   const [lang, setLang] = useState<Lang>("UZ");
+  const [hydrated, setHydrated] = useState(false);
+
   useEffect(() => {
     const saved = (typeof window !== "undefined" && localStorage.getItem("lang")) as Lang | null;
     if (saved === "UZ" || saved === "RU" || saved === "EN") setLang(saved);
+    setHydrated(true);
   }, []);
+
+  // Apply default language from settings on first load when nothing is saved
+  useEffect(() => {
+    if (!hydrated || !settings) return;
+    const saved = typeof window !== "undefined" ? localStorage.getItem("lang") : null;
+    if (!saved && (settings.default_lang === "UZ" || settings.default_lang === "RU" || settings.default_lang === "EN")) {
+      setLang(settings.default_lang);
+    }
+  }, [hydrated, settings]);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("lang", lang);
@@ -458,8 +472,10 @@ export function Header() {
   const { lang, setLang, t } = useT();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { data: settings } = useHeaderSettings();
+  const { data: navItems } = useNavItems();
 
-  const NAV: { label: string; to: string }[] = [
+  const fallbackNav: { label: string; to: string; openNewTab?: boolean }[] = [
     { label: t.nav.about, to: "/about" },
     { label: t.nav.products, to: "/products" },
     { label: t.nav.privateLabel, to: "/private-label" },
@@ -468,6 +484,32 @@ export function Header() {
     { label: t.nav.export, to: "/export" },
     { label: t.nav.contact, to: "/contact" },
   ];
+
+  const NAV = navItems && navItems.length > 0
+    ? navItems.map((n) => ({
+        label: lang === "UZ" ? n.title_uz : lang === "RU" ? n.title_ru : n.title_en,
+        to: n.url,
+        openNewTab: n.open_new_tab,
+      }))
+    : fallbackNav;
+
+  const enabledLangs = (["UZ", "RU", "EN"] as const).filter((l) => {
+    if (!settings) return true;
+    if (l === "UZ") return settings.lang_uz_enabled;
+    if (l === "RU") return settings.lang_ru_enabled;
+    return settings.lang_en_enabled;
+  });
+
+  const logoText = settings?.logo_text ?? "Logo";
+  const logoLink = settings?.logo_link ?? "/";
+  const showLogoImg = !!(settings?.show_logo_image && settings?.logo_image_url);
+  const showLogoText = settings ? settings.show_logo_text : true;
+
+  const ctaEnabled = settings?.cta_enabled ?? false;
+  const ctaText = settings
+    ? lang === "UZ" ? settings.cta_text_uz : lang === "RU" ? settings.cta_text_ru : settings.cta_text_en
+    : t.cta.quote;
+  const ctaUrl = settings?.cta_url ?? "/contact";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -483,37 +525,54 @@ export function Header() {
       }`}
     >
       <div className="container-x flex h-16 items-center gap-4 md:h-20">
-        <a href="/" className="flex shrink-0 items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-            <Leaf className="h-5 w-5" />
-          </span>
-          <span className="font-display text-lg font-extrabold tracking-tight">
-            Logo
-          </span>
+        <a href={logoLink} className="flex shrink-0 items-center gap-2.5">
+          {showLogoImg ? (
+            <img src={settings!.logo_image_url!} alt={logoText} className="h-9 w-auto" />
+          ) : (
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
+              <Leaf className="h-5 w-5" />
+            </span>
+          )}
+          {showLogoText && (
+            <span className="font-display text-lg font-extrabold tracking-tight">{logoText}</span>
+          )}
         </a>
 
         <nav className="ml-auto hidden items-center gap-7 lg:flex">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground [&.active]:text-foreground">
-              {n.label}
-            </Link>
+            n.openNewTab ? (
+              <a key={n.to} href={n.to} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+                {n.label}
+              </a>
+            ) : (
+              <Link key={n.to} to={n.to} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground [&.active]:text-foreground">
+                {n.label}
+              </Link>
+            )
           ))}
         </nav>
 
         <div className="ml-auto flex items-center gap-2 lg:ml-0">
-          <div className="hidden items-center rounded-full border border-border bg-card p-0.5 md:flex">
-            {(["UZ", "RU", "EN"] as const).map((l) => (
-              <button
-                key={l}
-                onClick={() => setLang(l)}
-                className={`rounded-full px-2.5 py-1 text-xs font-semibold transition-colors ${
-                  lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
+          {ctaEnabled && (
+            <a href={ctaUrl} className="hidden md:inline-flex btn-warm">
+              {ctaText} <ArrowRight className="h-4 w-4" />
+            </a>
+          )}
+          {enabledLangs.length > 1 && (
+            <div className="hidden items-center rounded-full border border-border bg-card p-0.5 md:flex">
+              {enabledLangs.map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`rounded-full px-2.5 py-1 text-xs font-semibold transition-colors ${
+                    lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
+          )}
           <button
             className="grid h-10 w-10 place-items-center rounded-lg border border-border lg:hidden"
             onClick={() => setOpen(true)}
@@ -527,7 +586,7 @@ export function Header() {
       {open && (
         <div className="fixed inset-0 z-50 bg-background lg:hidden">
           <div className="container-x flex h-16 items-center">
-            <span className="font-display text-lg font-extrabold">Logo</span>
+            <span className="font-display text-lg font-extrabold">{logoText}</span>
             <button
               className="ml-auto grid h-10 w-10 place-items-center rounded-lg border border-border"
               onClick={() => setOpen(false)}
@@ -538,26 +597,36 @@ export function Header() {
           </div>
           <nav className="container-x mt-4 flex flex-col gap-1">
             {NAV.map((n) => (
-              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary">
-                {n.label}
-              </Link>
+              n.openNewTab ? (
+                <a key={n.to} href={n.to} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary">
+                  {n.label}
+                </a>
+              ) : (
+                <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-base font-medium hover:bg-secondary">
+                  {n.label}
+                </Link>
+              )
             ))}
-            <div className="mt-3 flex items-center gap-2 rounded-full border border-border bg-card p-0.5 self-start">
-              {(["UZ", "RU", "EN"] as const).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLang(l)}
-                  className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
-                    lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground"
-                  }`}
-                >
-                  {l}
-                </button>
-              ))}
-            </div>
-            <a href="/contact" onClick={() => setOpen(false)} className="btn-warm mt-4">
-              {t.cta.quote} <ArrowRight className="h-4 w-4" />
-            </a>
+            {enabledLangs.length > 1 && (
+              <div className="mt-3 flex items-center gap-2 rounded-full border border-border bg-card p-0.5 self-start">
+                {enabledLangs.map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => setLang(l)}
+                    className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+                      lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground"
+                    }`}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+            )}
+            {ctaEnabled && (
+              <a href={ctaUrl} onClick={() => setOpen(false)} className="btn-warm mt-4">
+                {ctaText} <ArrowRight className="h-4 w-4" />
+              </a>
+            )}
           </nav>
         </div>
       )}
