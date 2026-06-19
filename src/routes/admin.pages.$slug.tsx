@@ -14,7 +14,7 @@ import {
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger,
 } from "@/components/ui/dialog";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 import {
   Loader2, Plus, Trash2, ArrowUp, ArrowDown, ChevronLeft, Eye, EyeOff, Save,
 } from "lucide-react";
