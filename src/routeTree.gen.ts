@@ -23,6 +23,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as AdminHeaderRouteImport } from './routes/admin.header'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as AdminProductsIndexRouteImport } from './routes/admin.products.index'
 import { Route as AdminProductsNewRouteImport } from './routes/admin.products.new'
@@ -98,6 +99,11 @@ const AdminLeadsRoute = AdminLeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminHeaderRoute = AdminHeaderRouteImport.update({
+  id: '/header',
+  path: '/header',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/products': typeof ProductsRoute
   '/quality': typeof QualityRoute
   '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/header': typeof AdminHeaderRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByTo {
   '/products': typeof ProductsRoute
   '/quality': typeof QualityRoute
   '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/header': typeof AdminHeaderRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -171,6 +179,7 @@ export interface FileRoutesById {
   '/products': typeof ProductsRoute
   '/quality': typeof QualityRoute
   '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/header': typeof AdminHeaderRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -193,6 +202,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/quality'
     | '/admin/categories'
+    | '/admin/header'
     | '/admin/leads'
     | '/admin/settings'
     | '/admin/users'
@@ -212,6 +222,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/quality'
     | '/admin/categories'
+    | '/admin/header'
     | '/admin/leads'
     | '/admin/settings'
     | '/admin/users'
@@ -232,6 +243,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/quality'
     | '/admin/categories'
+    | '/admin/header'
     | '/admin/leads'
     | '/admin/settings'
     | '/admin/users'
@@ -354,6 +366,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/header': {
+      id: '/admin/header'
+      path: '/header'
+      fullPath: '/admin/header'
+      preLoaderRoute: typeof AdminHeaderRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/categories': {
       id: '/admin/categories'
       path: '/categories'
@@ -387,6 +406,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminHeaderRoute: typeof AdminHeaderRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
@@ -398,6 +418,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminHeaderRoute: AdminHeaderRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,
